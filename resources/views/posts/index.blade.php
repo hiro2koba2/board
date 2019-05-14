@@ -3,6 +3,50 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
+
+        <div class="col-md-8">
+            <!-- <div class="m-3">
+                <a href="{{ route('posts.create') }}" class="btn btn-primary">
+                    投稿する
+                </a>
+            </div> -->
+            @foreach($posts as $post)
+            <div class="card m-3">
+                <div class="card-header">
+                    {{ $post->title }}
+                </div>
+
+                <div class="card-body">
+                    @if (session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+
+                    ログイン完了
+                    <p class="card-text">
+                        {!! nl2br(e(str_limit($post->body, 200))) !!}
+                        <!-- 200字までを表示 改行も読み取れる -->
+                    </p>
+                    <a class="card-link" href="{{ route('posts.show', ['post' => $post]) }}">
+                        続きを読む
+                    </a>
+                </div>
+                <div class="card-footer">
+                    <span class="mr-2">
+                        投稿日時 {{ $post->created_at->format('Y.m.d')}}
+                    </span>
+                    <span class="mr-2">
+                        ユーザー名 {{ $post->user->name }}
+                    </span>
+                </div>
+            </div>
+            @endforeach
+            <div class="d-flex justify-content-center mb-5">
+                {{ $posts->links() }}
+            </div>
+        </div>
+
         <aside class="col-md-4">
             <div class="p-3 mb-3">
                 <h4 class="font-italic">About</h4>
@@ -39,40 +83,6 @@
                 </ol>
             </div>
         </aside>
-
-        <div class="col-md-8">
-            @foreach($posts as $post)
-            <div class="card">
-                <div class="card-header">
-                    {{ $post->title }}
-                </div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    ログイン完了
-                    <p class="card-text">
-                        {!! nl2br(e(str_limit($post->body, 200))) !!}
-                    </p>
-                </div>
-                <div class="card-footer">
-                    <span class="mr-2">
-                        投稿日時 {{ $post->created_at->format('Y.m.d')}}
-                    </span>
-                    <span class="mr-2">
-                        ユーザー名 {{ $post->user->name }}
-                    </span>
-                </div>
-            </div>
-            @endforeach
-            <div class="d-flex justify-content-center mb-5">
-                {{ $posts->links() }}
-            </div>
-        </div>
 
     </div>
 </div>

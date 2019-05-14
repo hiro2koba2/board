@@ -19,8 +19,21 @@ Route::get('/', 'PostsController@index')->name('index');
 
 Route::resource('posts', 'PostsController');
 
-// Route::resource('comments', 'CommentsController');
+Route::resource('comments', 'CommentsController');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/api/notifications', function () {
+  return [
+      [
+          'id'      => 1,
+          'message' => 'message 1',
+      ],
+      [
+          'id'      => 2,
+          'message' => 'message 2',
+      ],
+  ];
+});

@@ -26,7 +26,7 @@ class PostsController extends Controller
      */
     public function create()
     {
-        //
+        return view('posts.create');
     }
 
     /**
@@ -37,7 +37,16 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $params = $request->validate([
+            'title' => 'required|max:50',
+            'body' => 'required|max:1000'
+        ]);
+
+        Post::create($params);
+
+        return redirect()->route('index');
+        // これで名前をつけたルートに飛べる
+        // これだとユーザー情報がない
     }
 
     /**
@@ -48,7 +57,11 @@ class PostsController extends Controller
      */
     public function show($id)
     {
-        //
+        $post = Post::findOrFail($id);
+
+        return view('posts.show',[
+            'post' => $post,
+        ]);
     }
 
     /**
@@ -82,6 +95,13 @@ class PostsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Post::findOrFail($id);
+
+        \DB::transaction(function () use ($post) {
+            $post->comments()->delete();
+            $post->delete();
+        });
+
+        return redirect()->route('index');
     }
 }

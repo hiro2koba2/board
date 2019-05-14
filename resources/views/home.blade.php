@@ -41,34 +41,11 @@
         </aside>
 
         <div class="col-md-8">
-            @foreach($posts as $post)
             <div class="card">
                 <div class="card-header">
-                    {{ $post->title }}
-                </div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    ログイン完了
-                    <p class="card-text">
-                        {!! nl2br(e(str-limit($post->body, 200))) !!}
-                    </p>
-                </div>
-                <div class="card-footer">
-                    <span class="mr-2">
-                        投稿日時 {{ $post->created_at->format('Y.m.d')}}
-                    </span>
-                    <span class="mr-2">
-                        ユーザー名 {{ $post->user->name }}
-                    </span>
+                    投稿画面
                 </div>
             </div>
-            @endforeach
         </div>
     </div>
 </div>
