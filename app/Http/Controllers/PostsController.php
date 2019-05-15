@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use Auth;
 
 class PostsController extends Controller
 {
@@ -39,14 +40,17 @@ class PostsController extends Controller
     {
         $params = $request->validate([
             'title' => 'required|max:50',
-            'body' => 'required|max:1000'
+            'body' => 'required|max:1000',
         ]);
+
+        $id = Auth::id();
+
+        $params += array('user_id' => $id);
 
         Post::create($params);
 
         return redirect()->route('index');
         // これで名前をつけたルートに飛べる
-        // これだとユーザー情報がない
     }
 
     /**
