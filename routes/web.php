@@ -25,6 +25,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+// apiの確認
 Route::get('/api/notifications', function () {
   return [
       [
