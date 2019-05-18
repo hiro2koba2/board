@@ -22,6 +22,10 @@
 
                 <button class="btn btn-danger">削除する</button>
             </form>
+            <a href="{{ route('posts.edit', ['post' => $post]) }}">
+                <button class="btn btn-info">編集する</button>
+            </a>
+
 
 
             <form class="mb-4" method="POST" action="{{ route('comments.store') }}">

@@ -76,7 +76,11 @@ class PostsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Post::findOrFail($id);
+
+        return view('posts.edit', [
+            'post' => $post,
+        ]);
     }
 
     /**
@@ -86,9 +90,19 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id, Request $request)
     {
-        //
+        $params = $request->validate([
+            'title' => 'required|max:50',
+            'body' => 'required|max:1000',
+        ]);
+
+        $post = Post::findOrFail($id);
+
+        // ここが肝　全てを書き換えるわけではない　だからユーザー情報をいじる必要はない
+        $post->fill($params)->save();
+
+        return redirect()->route('posts.show', ['post' => $post]);
     }
 
     /**

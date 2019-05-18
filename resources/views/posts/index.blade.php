@@ -23,9 +23,9 @@
                         </div>
                     @endif
 
-                    ログイン完了
+                    <!-- ログイン完了 -->
                     <p class="card-text">
-                        {!! nl2br(e(str_limit($post->body, 200))) !!}
+                        {!! nl2br(e(str_limit($post->body, 100))) !!}
                         <!-- 200字までを表示 改行も読み取れる -->
                     </p>
                     <a class="card-link" href="{{ route('posts.show', ['post' => $post]) }}">
