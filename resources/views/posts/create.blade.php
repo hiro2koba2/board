@@ -31,6 +31,16 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="tag">
+                        タグ
+                    </label>
+                    @foreach ($tags as $tag)
+                        <input type="checkbox" name="tags[]" value="{{ $tag->id }}">
+                        {{$tag->name}}
+                    @endforeach
+                </div>
+
+                <div class="form-group">
                     <label for="body">
                         本文
                     </label>

@@ -19,11 +19,11 @@ Route::get('/', 'PostsController@index')->name('index');
 
 Route::resource('posts', 'PostsController');
 
-Route::resource('comments', 'CommentsController');
+Route::resource('comments', 'CommentsController', ['only' => ['store']]);
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
 
 // apiの確認
 Route::get('/api/notifications', function () {

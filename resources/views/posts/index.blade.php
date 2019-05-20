@@ -16,6 +16,13 @@
                     {{ $post->title }}
                 </div>
 
+                <div class="card-header">
+                    タグ：
+                    @foreach($post->tags as $tag)
+                    {{ $tag->name }}、
+                    @endforeach
+                </div>
+
                 <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">

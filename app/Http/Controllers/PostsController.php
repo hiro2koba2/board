@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use App\Tag;
 use Auth;
 
 class PostsController extends Controller
@@ -17,7 +18,7 @@ class PostsController extends Controller
     {
         $posts = Post::orderBy('created_at', 'desc')->paginate(10);
 
-        return view('posts.index', ['posts' => $posts]);
+        return view('posts.index', ['posts' => $posts, 'tags' => Tag::all()]);
     }
 
     /**
@@ -27,7 +28,7 @@ class PostsController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        return view('posts.create', ['tags' => Tag::all()]);
     }
 
     /**
@@ -47,7 +48,8 @@ class PostsController extends Controller
 
         $params += array('user_id' => $id);
 
-        Post::create($params);
+        Post::create($params)->tags()->attach(request()->tags);
+        // tags()以降がタグ付与の設定
 
         return redirect()->route('index');
         // これで名前をつけたルートに飛べる
@@ -65,6 +67,7 @@ class PostsController extends Controller
 
         return view('posts.show',[
             'post' => $post,
+            'tags' => Tag::all()
         ]);
     }
 
