@@ -43,6 +43,7 @@ return [
 
     'disks' => [
 
+        // ここでs3にするかどうか切り替える　その場合、envも追加する必要ある
         'local' => [
             'driver' => 'local',
             'root' => storage_path('app'),

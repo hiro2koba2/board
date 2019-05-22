@@ -34,8 +34,13 @@
                     <label for="tag">
                         タグ
                     </label>
+                    <!-- オールドヘルパーがタグだけ効いてない laravelcollectiveを入れるべきか -->
                     @foreach ($tags as $tag)
-                        <input type="checkbox" name="tags[]" value="{{ $tag->id }}">
+                        <input
+                            type="checkbox"
+                            name="tags[]"
+                            value="{{ $tag->id }}"
+                        >
                         {{$tag->name}}
                     @endforeach
                 </div>

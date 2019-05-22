@@ -18,7 +18,7 @@ class PostsController extends Controller
     {
         $posts = Post::orderBy('created_at', 'desc')->paginate(10);
 
-        return view('posts.index', ['posts' => $posts, 'tags' => Tag::all()]);
+        return view('posts.index', ['posts' => $posts ]);
     }
 
     /**
@@ -43,12 +43,13 @@ class PostsController extends Controller
             'title' => 'required|max:50',
             'body' => 'required|max:1000',
         ]);
+        // バリデーションも移すべきか
 
         $id = Auth::id();
 
         $params += array('user_id' => $id);
 
-        Post::create($params)->tags()->attach(request()->tags);
+        Post::create($params)->tags()->sync($request->tags);
         // tags()以降がタグ付与の設定
 
         return redirect()->route('index');
@@ -67,7 +68,7 @@ class PostsController extends Controller
 
         return view('posts.show',[
             'post' => $post,
-            'tags' => Tag::all()
+            // 'tags' => Tag::all()
         ]);
     }
 
@@ -81,8 +82,10 @@ class PostsController extends Controller
     {
         $post = Post::findOrFail($id);
 
+        // 全てのタグをここでも表示できるように取り出す
         return view('posts.edit', [
             'post' => $post,
+            'tags' => Tag::all()
         ]);
     }
 
@@ -95,15 +98,19 @@ class PostsController extends Controller
      */
     public function update($id, Request $request)
     {
+        $post = Post::findOrFail($id);
+
         $params = $request->validate([
             'title' => 'required|max:50',
             'body' => 'required|max:1000',
         ]);
 
-        $post = Post::findOrFail($id);
+        // 更新処理に問題あり
 
-        // ここが肝　全てを書き換えるわけではない　だからユーザー情報をいじる必要はない
+        // ここが肝　全てを書き換えるわけではない　だからユーザー情報をいじる必要はない　タグはsyncを使う必要ある
         $post->fill($params)->save();
+
+        $post->tags()->sync($request->tags);
 
         return redirect()->route('posts.show', ['post' => $post]);
     }

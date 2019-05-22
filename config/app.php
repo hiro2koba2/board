@@ -166,6 +166,9 @@ return [
          * Package Service Providers...
          */
 
+        // イイね機能でクエリを少なく集計できるので導入
+        kanazaca\CounterCache\CounterCacheServiceProvider::class,
+
         /*
          * Application Service Providers...
          */

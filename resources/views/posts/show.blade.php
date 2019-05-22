@@ -8,8 +8,16 @@
             </h1>
 
             <p class="mb-5">
-                {!! nl2br(e($post->body)) !!}
+                投稿本文：{!! nl2br(e($post->body)) !!}
             </p>
+
+            <!-- 動作確認はまだ -->
+            <div class="mb-5">
+                タグ：
+                @foreach($post->tags as $tag)
+                {{ $tag->name }}、
+                @endforeach
+            </div>
 
             <form
                 style="display: inline-block;"
@@ -39,7 +47,7 @@
 
                 <div class="form-group">
                     <label for="body">
-                        本文
+                        コメント本文
                     </label>
 
                     <textarea

@@ -4,8 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Post extends Model
+// medialibraryに必要なもの
+use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+
+class Post extends Model implements HasMedia
 {
+    use HasMediaTrait;
+
     protected $fillable = [
         'title',
         'body',
@@ -26,4 +32,14 @@ class Post extends Model
     {
         return $this->belongsToMany('App\Tag');
     }
+
+    public function likes()
+    {
+      return $this->hasMany('App\Like');
+    }
+
+    // public function like_by()
+    // {
+    //   return Like::where('user_id', Auth::user()->id)->first();
+    // }
 }

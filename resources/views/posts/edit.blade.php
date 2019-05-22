@@ -31,6 +31,23 @@
                     @endif
                 </div>
 
+                <!-- 動作確認はまだ -->
+                <div class="form-group">
+                    <label class="checkbox-inline" for="tag">
+                        タグ
+                    </label>
+                    <!--  $post->tagsだと選択肢が全て出ないので今はこれ データベースから取ってきて判断する laracastsのものをさらに調整した -->
+                    @foreach ($tags as $tag)
+                        <input
+                            type="checkbox"
+                            name="tags[]"
+                            value="{{ $tag->id }}"
+                            @if($post->tags->contains($tag->id)) checked=checked @endif
+                        >
+                        {{$tag->name}}
+                    @endforeach
+                </div>
+
                 <div class="form-group">
                     <label for="body">
                         本文

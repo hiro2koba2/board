@@ -14,6 +14,7 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
+        // ユーザー10人、一人につき3ポスト生成
         factory(User::class, 10)
             ->create()
             ->each(function($user){

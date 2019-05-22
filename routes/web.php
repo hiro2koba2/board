@@ -24,17 +24,3 @@ Route::resource('comments', 'CommentsController', ['only' => ['store']]);
 Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');
-
-// apiの確認
-Route::get('/api/notifications', function () {
-  return [
-      [
-          'id'      => 1,
-          'message' => 'message 1',
-      ],
-      [
-          'id'      => 2,
-          'message' => 'message 2',
-      ],
-  ];
-});
