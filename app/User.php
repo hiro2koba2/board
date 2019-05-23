@@ -6,9 +6,16 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+// medialibraryに必要なもの
+use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+
+// Fileの調整で必要
+use Spatie\MediaLibrary\File;
+
+class User extends Authenticatable implements HasMedia
 {
-    use Notifiable;
+    use Notifiable, HasMediaTrait;
 
     /**
      * The attributes that are mass assignable.
@@ -56,5 +63,14 @@ class User extends Authenticatable
     public function likes()
     {
       return $this->hasMany(Like::class);
+    }
+
+    public function registerMediaCollections()
+    {
+        $this->addMediaCollection('avatar')
+            ->acceptsFile(function (File $file) {
+                return $file->mimeType === 'image/png';
+            });;
+            // pngのみにできるがエラーの表示が違うものになる
     }
 }
