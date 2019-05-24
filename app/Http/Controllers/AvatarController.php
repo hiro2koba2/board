@@ -13,9 +13,9 @@ class AvatarController extends Controller
      */
     public function index()
     {
-        $avatars = auth()->user()->getMedia('avatar');
+        $avatars = auth()->user()->getFirstMedia('avatar');
+        // firstが大事 avatarも複数持てる感覚
         return view('profile', compact('avatars'));
-        // 複数の画像を扱えるように
     }
 
     /**
@@ -25,7 +25,7 @@ class AvatarController extends Controller
      */
     public function create()
     {
-        // auth()->user()->clearMediaCollection();
+        // auth()->user()->clearMediaCollection('avatar');
         // これでdefaultのメディアグループが消える
     }
 

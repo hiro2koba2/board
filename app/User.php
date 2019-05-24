@@ -6,12 +6,15 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-// medialibraryに必要なもの
+// mediaとmodelを紐つけるために最初に必要なもの
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
 // Fileの調整で必要
 use Spatie\MediaLibrary\File;
+
+// Conversionへの登録に必要
+use Spatie\MediaLibrary\Models\Media;
 
 class User extends Authenticatable implements HasMedia
 {
@@ -60,17 +63,40 @@ class User extends Authenticatable implements HasMedia
         return $this->hasMany('App\Comment');
     }
 
-    public function likes()
-    {
-      return $this->hasMany(Like::class);
-    }
+    // public function likes()
+    // {
+    //   return $this->hasMany(Like::class);
+    // }
 
     public function registerMediaCollections()
     {
-        $this->addMediaCollection('avatar')
-            ->acceptsFile(function (File $file) {
-                return $file->mimeType === 'image/png';
-            });;
-            // pngのみにできるがエラーの表示が違うものになる
+        $this
+            ->addMediaCollection('avatar')
+            ->singleFile()
+            // これでアップロードできるのは一つだけ、一つ前のものは自動で削除
+
+            // ->acceptsFile(function (File $file) {
+            //     return $file->mimeType === 'image/png';
+            // })
+            // ファイルの種類を指定できる　今はなし
+
+            ->registerMediaConversions(function (Media $media) {
+                $this->addMediaConversion('card')
+                    ->width(200)
+                    ->height(200);
+                $this->addMediaConversion('thumb')
+                    ->width(50)
+                    ->height(50);
+            });
     }
+
+    // public function avatar()
+    // {
+    //     return $this->hasOne(Media::class, 'id', 'avatar_id');
+    // }
+
+    // public function getAvatarUrlAttribute()
+    // {
+    //     return $this->avatar->getUrl('thumb');
+    // }
 }
