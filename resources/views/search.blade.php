@@ -5,11 +5,9 @@
     <div class="row justify-content-center">
 
         <div class="col-md-8">
-            <!-- <div class="m-3">
-                <a href="{{ route('posts.create') }}" class="btn btn-primary">
-                    投稿する
-                </a>
-            </div> -->
+            <div class="m-3">
+                <p>タグ検索：</p>
+            </div>
             @foreach($posts as $post)
             <div class="card m-3">
                 <div class="card-header">
@@ -49,9 +47,7 @@
                 </div>
             </div>
             @endforeach
-            <div class="d-flex justify-content-center mb-5">
-                {{ $posts->links() }}
-            </div>
+
         </div>
 
         <aside class="col-md-4">

@@ -21,6 +21,8 @@ Auth::routes();
 
 Route::get('profile', 'AvatarController@index')->name('profile');
 
+Route::get('search/{id}', 'SearchPostWithTagController')->name('search');
+
 Route::resource('avatar', 'AvatarController');
 
 Route::resource('posts', 'PostsController');
