@@ -17,7 +17,7 @@ class SearchPostWithTagController extends Controller
     public function __invoke($id)
     {
         // タグのidが渡ってきてる。それと一致するものを持つポストをviewに返すことでOK
-        // タグは複数所持することができる。タグのidからたどるならどうするか
+        // マーキングが効いてないシングルコントローラだから？ 一応動くけど重いかな
         $posts = Tag::find($id)->posts()->get();
 
         return view('search', ['posts' => $posts]);
