@@ -5,12 +5,12 @@
     <div class="row justify-content-center">
 
         <div class="col-md-8">
+            <div class="m-4">
+                <p>ユーザー検索：<span class="badge badge-pill badge-info"></span></p>
+            </div>
             @foreach($posts as $post)
             <div class="card m-3">
                 <div class="card-header">
-                    @if ( null !== $post->getFirstMedia('postImages') )
-                        <img src="{{ $post->getFirstMedia('postImages')->getUrl('thumb') }}" width="" height="" alt="" class="round-circle mr-3">
-                    @endif
                     {{ $post->title }}
                 </div>
 
@@ -31,7 +31,7 @@
                     <!-- ログイン完了 -->
                     <p class="card-text">
                         {!! nl2br(e(str_limit($post->body, 100))) !!}
-                        <!-- 200字までを表示 改行も読み取れる -->
+                        <!-- 100字までを表示 改行も読み取れる -->
                     </p>
                     <a class="card-link" href="{{ route('posts.show', ['post' => $post]) }}">
                         続きを読む
@@ -42,14 +42,12 @@
                         投稿日時 {{ $post->created_at->format('Y.m.d')}}
                     </span>
                     <span class="mr-2">
-                        ユーザー名 <a href="{{ route('UserSearch', ['id' => $post->user->id ])}}">{{ $post->user->name }}</a>
+                        ユーザー名 {{ $post->user->name }}
                     </span>
                 </div>
             </div>
             @endforeach
-            <div class="d-flex justify-content-center mb-5">
-                {{ $posts->links() }}
-            </div>
+
         </div>
 
         <aside class="col-md-4">

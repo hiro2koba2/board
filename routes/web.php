@@ -11,22 +11,18 @@
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
 Route::get('/', 'PostsController@index')->name('index');
 
 Auth::routes();
 
 Route::get('profile', 'AvatarController@index')->name('profile');
 
-Route::get('search/{id}', 'SearchPostWithTagController')->name('search');
+Route::get('tags/{id}', 'SearchPostWithTagController')->name('TagSearch');
 
-Route::resource('avatar', 'AvatarController');
+Route::get('users/{id}', 'UsersPostSearchController')->name('UserSearch');
+
+Route::resource('avatar', 'AvatarController', ['only' => ['index', 'store']]);
 
 Route::resource('posts', 'PostsController');
 
 Route::resource('comments', 'CommentsController', ['only' => ['store']]);
-
-// Route::get('/home', 'HomeController@index')->name('home');

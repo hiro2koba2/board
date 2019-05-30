@@ -5,8 +5,8 @@
     <div class="row justify-content-center">
 
         <div class="col-md-8">
-            <div class="m-3">
-                <p>タグ検索：</p>
+            <div class="m-4">
+                <p>タグ検索：<span class="badge badge-pill badge-info">{{ $name }}</span></p>
             </div>
             @foreach($posts as $post)
             <div class="card m-3">
@@ -17,7 +17,7 @@
                 <div class="card-header">
                     タグ：
                     @foreach($post->tags as $tag)
-                    <a href="{{ route('search', ['id' => $tag->id]) }}" class="badge badge-secondary">{{ $tag->name }}</a>
+                    <a href="{{ route('TagSearch', ['id' => $tag->id]) }}" class="badge badge-pill badge-info">{{ $tag->name }}</a>
                     @endforeach
                 </div>
 
@@ -31,7 +31,7 @@
                     <!-- ログイン完了 -->
                     <p class="card-text">
                         {!! nl2br(e(str_limit($post->body, 100))) !!}
-                        <!-- 200字までを表示 改行も読み取れる -->
+                        <!-- 100字までを表示 改行も読み取れる -->
                     </p>
                     <a class="card-link" href="{{ route('posts.show', ['post' => $post]) }}">
                         続きを読む

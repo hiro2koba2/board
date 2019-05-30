@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Post;
 use App\Tag;
 use Auth;
@@ -42,6 +43,7 @@ class PostsController extends Controller
         $params = $request->validate([
             'title' => 'required|max:50',
             'body' => 'required|max:1000',
+            'cafeimage.name' => 'required'
         ]);
         // バリデーションも移すべきか
 
@@ -49,8 +51,18 @@ class PostsController extends Controller
 
         $params += array('user_id' => $id);
 
-        Post::create($params)->tags()->sync($request->tags);
-        // tags()以降がタグ付与の設定
+        if (isset($request->cafeimage)) {
+            echo "ファイルを洗濯してください";
+        } else {
+            $post = Post::create($params);
+
+            $post->tags()->sync($request->tags);
+            // tags()以降がタグ付与の設定
+
+            $post->addMedia($request->cafeimage)->toMediaCollection('postImages');
+            // メディアライブラリに追加
+        }
+
 
         return redirect()->route('index');
         // これで名前をつけたルートに飛べる

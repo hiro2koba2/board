@@ -16,10 +16,12 @@ class SearchPostWithTagController extends Controller
      */
     public function __invoke($id)
     {
-        // タグのidが渡ってきてる。それと一致するものを持つポストをviewに返すことでOK
-        // マーキングが効いてないシングルコントローラだから？ 一応動くけど重いかな
-        $posts = Tag::find($id)->posts()->get();
+        // タグのidが渡ってきてる。それと一致するものを持つポストをviewに返すことでOK コレクションを降順に
+        $posts = Tag::find($id)->posts()->get()->sortByDesc('created_at');
 
-        return view('search', ['posts' => $posts]);
+        // タグの名前をここで出して、そのまま渡す
+        $name = Tag::find($id)->name;
+
+        return view('search', ['posts' => $posts, 'name' => $name]);
     }
 }

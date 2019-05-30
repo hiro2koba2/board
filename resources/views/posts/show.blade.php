@@ -3,9 +3,13 @@
 @section('content')
     <div class="container mt-4">
         <div class="border p-4">
-            <h1 class="h5 mb-4">
+            <h2 class="h5 mb-4">
                 {{ $post->title }}
-            </h1>
+            </h2>
+
+            @if ( null !== $post->getFirstMedia('postImages') )
+            <img src="{{ $post->getFirstMedia('postImages')->getUrl('card') }}" width="" height="" alt="" class="round-circle mb-5">
+            @endif
 
             <p class="mb-5">
                 投稿本文：{!! nl2br(e($post->body)) !!}
@@ -19,56 +23,57 @@
                 @endforeach
             </div>
 
-            <form
-                style="display: inline-block;"
-                method="POST"
-                action="{{ route('posts.destroy', ['post' => $post]) }}"
-                class="mb-5"
-            >
-                @csrf
-                @method('DELETE')
-
-                <button class="btn btn-danger">削除する</button>
-            </form>
-            <a href="{{ route('posts.edit', ['post' => $post]) }}">
-                <button class="btn btn-info">編集する</button>
-            </a>
-
-
-
-            <form class="mb-4" method="POST" action="{{ route('comments.store') }}">
-                @csrf
-
-                <input
-                    name="post_id"
-                    type="hidden"
-                    value="{{ $post->id }}"
+            @auth
+                <form
+                    style="display: inline-block;"
+                    method="POST"
+                    action="{{ route('posts.destroy', ['post' => $post]) }}"
+                    class="mb-5"
                 >
+                    @csrf
+                    @method('DELETE')
 
-                <div class="form-group">
-                    <label for="body">
-                        コメント本文
-                    </label>
+                    <button class="btn btn-danger">削除する</button>
+                </form>
+                <a href="{{ route('posts.edit', ['post' => $post]) }}">
+                    <button class="btn btn-info">編集する</button>
+                </a>
 
-                    <textarea
-                        id="body"
-                        name="body"
-                        class="form-control {{ $errors->has('body') ? 'is-invalid' : '' }}"
-                        rows="4"
-                    >{{ old('body') }}</textarea>
-                    @if ($errors->has('body'))
-                        <div class="invalid-feedback">
-                            {{ $errors->first('body') }}
-                        </div>
-                    @endif
-                </div>
 
-                <div class="mt-4">
-                    <button type="submit" class="btn btn-primary">
-                        コメントする
-                    </button>
-                </div>
-            </form>
+                <form class="mb-4" method="POST" action="{{ route('comments.store') }}">
+                    @csrf
+
+                    <input
+                        name="post_id"
+                        type="hidden"
+                        value="{{ $post->id }}"
+                    >
+
+                    <div class="form-group">
+                        <label for="body">
+                            コメント本文
+                        </label>
+
+                        <textarea
+                            id="body"
+                            name="body"
+                            class="form-control {{ $errors->has('body') ? 'is-invalid' : '' }}"
+                            rows="4"
+                        >{{ old('body') }}</textarea>
+                        @if ($errors->has('body'))
+                            <div class="invalid-feedback">
+                                {{ $errors->first('body') }}
+                            </div>
+                        @endif
+                    </div>
+
+                    <div class="mt-4">
+                        <button type="submit" class="btn btn-primary">
+                            コメントする
+                        </button>
+                    </div>
+                </form>
+            @endauth
 
             <section>
                 <h2 class="h5 mb-4">

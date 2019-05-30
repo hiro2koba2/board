@@ -67,7 +67,11 @@
                                         {{ __('Logout') }}
                                     </a>
 
-                                    <a class="dropdown-item" href="{{ route('profile') }}">Profile</a>
+                                    <a class="dropdown-item" href="{{ route('profile') }}">プロフィール</a>
+
+                                    <a href="{{ route('posts.create') }}" class="dropdown-item">
+                                        投稿する
+                                    </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
@@ -75,12 +79,6 @@
                                 </div>
 
                             </li>
-                            <li>
-                                <a href="{{ route('posts.create') }}" class="btn btn-primary">
-                                    投稿する
-                                </a>
-                            </li>
-
                         @endguest
                     </ul>
                 </div>

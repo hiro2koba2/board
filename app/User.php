@@ -10,7 +10,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
-// Fileの調整で必要
+// 画像Fileの調整で必要
 use Spatie\MediaLibrary\File;
 
 // Conversionへの登録に必要
@@ -63,11 +63,15 @@ class User extends Authenticatable implements HasMedia
         return $this->hasMany('App\Comment');
     }
 
+    // いいねは一度なしにする
     // public function likes()
     // {
     //   return $this->hasMany(Like::class);
     // }
 
+    /**
+     * mediaモデルへの登録
+     */
     public function registerMediaCollections()
     {
         $this
@@ -89,14 +93,4 @@ class User extends Authenticatable implements HasMedia
                     ->height(50);
             });
     }
-
-    // public function avatar()
-    // {
-    //     return $this->hasOne(Media::class, 'id', 'avatar_id');
-    // }
-
-    // public function getAvatarUrlAttribute()
-    // {
-    //     return $this->avatar->getUrl('thumb');
-    // }
 }
