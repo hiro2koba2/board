@@ -88,6 +88,9 @@ class PostsController extends Controller
     {
         $post = Post::findOrFail($id);
 
+        $this->authorize('update', $post);
+        // ポリシー
+
         // 全てのタグをここでも表示できるように取り出す
         return view('posts.edit', [
             'post' => $post,
@@ -105,6 +108,9 @@ class PostsController extends Controller
     public function update($id, Request $request)
     {
         $post = Post::findOrFail($id);
+
+        $this->authorize('update', $post);
+        // ポリシー
 
         $params = $request->validate([
             'title' => 'required|max:50',
@@ -130,6 +136,9 @@ class PostsController extends Controller
     public function destroy($id)
     {
         $post = Post::findOrFail($id);
+
+        $this->authorize('update', $post);
+        // ポリシー
 
         \DB::transaction(function () use ($post) {
             $post->comments()->delete();
