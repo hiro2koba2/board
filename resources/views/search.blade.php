@@ -24,28 +24,32 @@
                         </div>
 
                         <div class="card-body">
-                            @if (session('status'))
+                            <!-- @if (session('status'))
                                 <div class="alert alert-success" role="alert">
                                     {{ session('status') }}
                                 </div>
+                            @endif -->
+
+                            @if ( null !== $post->getFirstMedia('postImages') )
+                                <img src="{{ $post->getFirstMedia('postImages')->getUrl('card') }}" width="" height="" alt="" class="round-circle mr-3">
                             @endif
 
                             <!-- ログイン完了 -->
-                            <p class="card-text">
+                            <!-- <p class="card-text">
                                 {!! nl2br(e(str_limit($post->body, 100))) !!}
-                                <!-- 100字までを表示 改行も読み取れる -->
-                            </p>
+                                100字までを表示 改行も読み取れる -->
+                            <!-- </p> -->
+                        </div>
+                        <div class="card-footer">
                             <a class="card-link" href="{{ route('posts.show', ['post' => $post]) }}">
                                 続きを読む
                             </a>
-                        </div>
-                        <div class="card-footer">
-                            <span class="mr-2">
+                            <!-- <span class="mr-2">
                                 投稿日時 {{ $post->created_at->format('Y.m.d')}}
                             </span>
                             <span class="mr-2">
                                 ユーザー名 {{ $post->user->name }}
-                            </span>
+                            </span> -->
                         </div>
                     </div>
                 </div>
