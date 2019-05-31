@@ -25,7 +25,7 @@ Route::resource('avatar', 'AvatarController', ['only' => ['index', 'store']]);
 
 Route::resource('posts', 'PostsController');
 
-//コメント投稿フォームページ
+//コメント投稿はログイン　新規投稿も追加する　リダイレクトを決める
 Route::group(['middleware' => 'auth'], function() {
     Route::resource('comments', 'CommentsController', ['only' => ['store']]);
 });

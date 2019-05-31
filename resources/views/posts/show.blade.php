@@ -60,12 +60,20 @@
 
                         @forelse($post->comments as $comment)
                             <div class="border-top p-4">
-                                <p class="mt-1">
-                                    {!! nl2br(e($comment->body)) !!}
-                                </p>
-                                <p class="text-right">
-                                    {{ $comment->created_at->format('Y.m.d H:i') }}
-                                </p>
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <img src="{{ $comment->user->getFirstMedia('avatar')->getUrl('thumb')  }}" width="50" height="50" alt="" class="rounded-circle">
+                                        <!-- <p class="text-center"><b>{{ $comment->user->name }}</b></p> -->
+                                    </div>
+                                    <div class="col-md-10">
+                                        <p class="mt-1">
+                                            {!! nl2br(e($comment->body)) !!}
+                                        </p>
+                                        <p>
+                                            {{ $comment->created_at->format('Y.m.d H:i') }}
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
                         @empty
                             <small class="text-secondary">口コミはまだありません。</small>
