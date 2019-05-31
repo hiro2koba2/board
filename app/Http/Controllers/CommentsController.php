@@ -8,12 +8,6 @@ use Auth;
 
 class CommentsController extends Controller
 {
-    // ログインしてない場合のリダイレクト処理
-    // public function __construct()
-    // {
-    //     $this->middleware('auth')->
-    // }
-
     /**
      * Display a listing of the resource.
      *

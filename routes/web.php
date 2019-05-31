@@ -25,4 +25,7 @@ Route::resource('avatar', 'AvatarController', ['only' => ['index', 'store']]);
 
 Route::resource('posts', 'PostsController');
 
-Route::resource('comments', 'CommentsController', ['only' => ['store']]);
+//コメント投稿フォームページ
+Route::group(['middleware' => 'auth'], function() {
+    Route::resource('comments', 'CommentsController', ['only' => ['store']]);
+});
