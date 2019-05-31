@@ -11,11 +11,10 @@
                 <div class="col-lg-6">
                     <div class="card m-3">
                         <div class="card-header">
-                            {{ $post->title }}
+                            <b>{{ $post->title }}</b>
                         </div>
 
                         <div class="card-header">
-                            タグ：
                             @foreach($post->tags as $tag)
                             <a href="{{ route('TagSearch', ['id' => $tag->id]) }}" class="badge badge-pill badge-info">{{ $tag->name }}</a>
                             @endforeach

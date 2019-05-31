@@ -5,33 +5,39 @@
         <div class="row justify-content-center">
             <div class="col-md-8 col-lg-6 col-md-offset-2 col-lg-offset-3">
                 <div class="border p-4">
-                    <h2 class="h5 mb-4">
+                    <h2 class="mb-3">
                         {{ $post->title }}
+                        <!-- 太字にしてみるかな -->
                     </h2>
 
                     @if ( null !== $post->getFirstMedia('postImages') )
-                    <img src="{{ $post->getFirstMedia('postImages')->getUrl('card') }}" width="" height="" alt="" class="round-circle mb-5">
+                    <img src="{{ $post->getFirstMedia('postImages')->getUrl('card') }}" width="" height="" alt="カフェの写真" class="round-circle mb-3">
                     @endif
 
-                    <p class="mb-5">
-                        投稿本文：{!! nl2br(e($post->body)) !!}
-                    </p>
-
-                    <!-- 動作確認はまだ -->
-                    <div class="mb-5">
-                        タグ：
+                    <div class="mb-4">
                         @foreach($post->tags as $tag)
-                        {{ $tag->name }}、
+                        <p class="badge badge-pill badge-info">{{$tag->name}}</p>
                         @endforeach
                     </div>
 
-                    @auth
+                    <p class="mb-4">
+                        <b>投稿本文：</b>{!! nl2br(e($post->body)) !!}
+                    </p>
+
+                    <address>
+                        #123 St. Kansas City, MO<br/>
+                        +34 1234 5678 <br/>
+                        <a href="#">  name@email.com</a> <br/>
+                    </address>
+
+                    @can('update', $post)
+                    <!-- ポリシーでチェックしてOKなら表示　所有者なら -->
                         <form
-                            style="display: inline-block;"
-                            method="POST"
-                            action="{{ route('posts.destroy', ['post' => $post]) }}"
-                            class="mb-5"
-                        >
+                                style="display: inline-block;"
+                                method="POST"
+                                action="{{ route('posts.destroy', ['post' => $post]) }}"
+                                class="mb-5"
+                            >
                             @csrf
                             @method('DELETE')
 
@@ -40,8 +46,29 @@
                         <a href="{{ route('posts.edit', ['post' => $post]) }}">
                             <button class="btn btn-info">編集する</button>
                         </a>
+                    @endcan
+
+                    <section>
+                        <h2 class="h5 mb-4">
+                            <b>コメント</b>
+                        </h2>
+
+                        @forelse($post->comments as $comment)
+                            <div class="border-top p-4">
+                                <p class="mt-1">
+                                    {!! nl2br(e($comment->body)) !!}
+                                </p>
+                                <p class="text-right">
+                                    {{ $comment->created_at->format('Y.m.d H:i') }}
+                                </p>
+                            </div>
+                        @empty
+                            <p>コメントはまだありません。</p>
+                        @endforelse
+                    </section>
 
 
+                    @auth
                         <form class="mb-4" method="POST" action="{{ route('comments.store') }}">
                             @csrf
 
@@ -77,24 +104,6 @@
                         </form>
                     @endauth
 
-                    <section>
-                        <h2 class="h5 mb-4">
-                            コメント
-                        </h2>
-
-                        @forelse($post->comments as $comment)
-                            <div class="border-top p-4">
-                                <time class="text-secondary">
-                                    {{ $comment->created_at->format('Y.m.d H:i') }}
-                                </time>
-                                <p class="mt-2">
-                                    {!! nl2br(e($comment->body)) !!}
-                                </p>
-                            </div>
-                        @empty
-                            <p>コメントはまだありません。</p>
-                        @endforelse
-                    </section>
                 </div>
             </div>
         </div>
