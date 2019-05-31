@@ -7,7 +7,6 @@
             <!-- ログイン中のユーザーとポスト毎のユーザーを比較 if で表示非表示を切り替える -->
             <form action="{{ route('avatar.store')}}" method="post" enctype="multipart/form-data">
                 @csrf
-
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text">Upload</span>
@@ -18,7 +17,6 @@
                     </div>
                     <input type="submit" value="Upload" class="btn btn-success ml-4">
                 </div>
-
             </form>
             <div class="card">
             <!-- 新規のユーザーの場合などのための措置 -->

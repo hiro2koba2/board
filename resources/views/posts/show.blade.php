@@ -1,13 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container mt-4">
+    <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8 col-lg-6 col-md-offset-2 col-lg-offset-3">
-                <div class="border p-4">
-                    <h2 class="mb-3">
+                <!-- <div class="border p-4"> -->
+                    <h2 class="mb-3 mt-2">
                         {{ $post->title }}
-                        <!-- 太字にしてみるかな -->
                     </h2>
 
                     <div class="row justify-content-center mb-3">
@@ -61,11 +60,13 @@
                         @forelse($post->comments as $comment)
                             <div class="border-top p-4">
                                 <div class="row">
-                                    <div class="col-md-2">
-                                        <img src="{{ $comment->user->getFirstMedia('avatar')->getUrl('thumb')  }}" width="50" height="50" alt="" class="rounded-circle">
+                                    <div class="col-xs-2">
+                                        <a href="{{ route('UserSearch', ['id' => $comment->user->id ])}}">
+                                            <img src="{{ $comment->user->getFirstMedia('avatar')->getUrl('thumb')  }}" width="50" height="50" alt="" class="rounded-circle mr-4">
+                                        </a>
                                         <!-- <p class="text-center"><b>{{ $comment->user->name }}</b></p> -->
                                     </div>
-                                    <div class="col-md-10">
+                                    <div class="col-xs-10">
                                         <p class="mt-1">
                                             {!! nl2br(e($comment->body)) !!}
                                         </p>
@@ -112,7 +113,7 @@
                             </button>
                         </div>
                     </form>
-                </div>
+                <!-- </div> -->
             </div>
         </div>
     </div>
