@@ -12,6 +12,7 @@
                     <div class="card m-3">
                         <div class="card-header">
                             <b>{{ $post->title }}</b>
+                            <div class="text-right">口コミ総数{{ $post->comments->count() }}</div>
                         </div>
 
                         <div class="card-header">
@@ -29,13 +30,6 @@
                                     {{ session('status') }}
                                 </div>
                             @endif -->
-
-                            <!-- ログイン完了 -->
-                            <!-- <p class="card-text">
-                                {!! nl2br(e(str_limit($post->body, 100))) !!}
-                                200字までを表示 改行も読み取れる
-                            </p>
-                             -->
                         </div>
                         <div class="card-footer">
                             <!-- <span class="mr-2">

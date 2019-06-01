@@ -63,11 +63,11 @@ class User extends Authenticatable implements HasMedia
         return $this->hasMany('App\Comment');
     }
 
-    // いいねは一度なしにする
-    // public function likes()
-    // {
-    //   return $this->hasMany(Like::class);
-    // }
+    // いいね機能のもの
+    public function likes()
+    {
+      return $this->hasMany('App\Like');
+    }
 
     /**
      * mediaモデルへの登録

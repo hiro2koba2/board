@@ -17,8 +17,10 @@ Auth::routes();
 
 Route::get('profile', 'AvatarController@index')->name('profile');
 
+// タグ検索のルート
 Route::get('tags/{id}', 'SearchPostWithTagController')->name('TagSearch');
 
+// 特定ユーザーのポストだけを返すルート
 Route::get('users/{id}', 'UsersPostSearchController')->name('UserSearch');
 
 Route::resource('avatar', 'AvatarController', ['only' => ['index', 'store']]);
@@ -29,3 +31,7 @@ Route::resource('posts', 'PostsController');
 Route::group(['middleware' => 'auth'], function() {
     Route::resource('comments', 'CommentsController', ['only' => ['store']]);
 });
+
+Route::post('posts/{id}/likes', 'LikesController@like');
+
+Route::delete('posts/{id}/likes/{like_id}', 'LikesController@unlike');

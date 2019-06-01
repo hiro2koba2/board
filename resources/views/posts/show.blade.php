@@ -17,12 +17,35 @@
                         </div>
 
                         <div class="col-md-6">
-                            <div class="mb-4">
+                            <!-- いいね機能 -->
+                            @if (Auth::check())
+                                <div class="mb-2">
+                                    @if ($like)
+                                    {{ Form::model($post, array('action' => array('LikesController@unlike', $post->id, $like->id))) }}
+                                    {{ Form::hidden('_method','DELETE') }}
+                                    @csrf
+                                        <button type="submit">
+                                            <!-- <img src="/images/icon_heart_red.svg"> -->
+                                            Like {{ $post->likes_count }}
+                                        </button>
+                                    {!! Form::close() !!}
+                                    @else
+                                    {{ Form::model($post, array('action' => array('LikesController@like', $post->id))) }}
+                                        <button type="submit">
+                                            <!-- <img src="/images/icon_heart.svg"> -->
+                                            Like {{ $post->likes_count }}
+                                        </button>
+                                    {!! Form::close() !!}
+                                    @endif
+                                </div>
+                            @endif
+
+                            <div class="mb-2">
                                 @foreach($post->tags as $tag)
                                     <p class="badge badge-pill badge-info">{{$tag->name}}</p>
                                 @endforeach
                             </div>
-                            <p class="mb-4">
+                            <p class="mb-2">
                                 <b>投稿本文：</b>{!! nl2br(e($post->body)) !!}
                             </p>
 

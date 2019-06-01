@@ -72,9 +72,11 @@ class PostsController extends Controller
     {
         $post = Post::findOrFail($id);
 
+        $like = $post->likes()->where('user_id', Auth::id())->first();
+
         return view('posts.show',[
             'post' => $post,
-            // 'tags' => Tag::all()
+            'like' => $like,
         ]);
     }
 

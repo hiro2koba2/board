@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Auth;
+use App\Like;
 
 // medialibraryに必要なもの
 use Spatie\MediaLibrary\HasMedia\HasMedia;
@@ -44,10 +46,10 @@ class Post extends Model implements HasMedia
       return $this->hasMany('App\Like');
     }
 
-    // public function like_by()
-    // {
-    //   return Like::where('user_id', Auth::user()->id)->first();
-    // }
+    public function like_by()
+    {
+      return Like::where('user_id', Auth::user()->id)->first();
+    }
 
     public function registerMediaCollections()
     {

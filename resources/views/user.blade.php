@@ -13,11 +13,11 @@
                 <div class="col-lg-6">
                     <div class="card m-3">
                         <div class="card-header">
-                            {{ $post->title }}
+                            <b>{{ $post->title }}</b>
+                            <div class="text-right">口コミ総数{{ $post->comments->count() }}</div>
                         </div>
 
                         <div class="card-header">
-                            タグ：
                             @foreach($post->tags as $tag)
                             <a href="{{ route('TagSearch', ['id' => $tag->id]) }}" class="badge badge-pill badge-info">{{ $tag->name }}</a>
                             @endforeach
@@ -33,12 +33,6 @@
                             @if ( null !== $post->getFirstMedia('postImages') )
                                 <img src="{{ $post->getFirstMedia('postImages')->getUrl('card') }}" width="" height="" alt="" class="round-circle mr-3">
                             @endif
-
-                            <!-- ログイン完了 -->
-                            <!-- <p class="card-text">
-                                {!! nl2br(e(str_limit($post->body, 100))) !!} -->
-                                <!-- 100字までを表示 改行も読み取れる -->
-                            <!-- </p> -->
                         </div>
                         <div class="card-footer">
                             <a class="card-link" href="{{ route('posts.show', ['post' => $post]) }}">
