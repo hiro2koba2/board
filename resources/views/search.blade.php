@@ -14,7 +14,7 @@
                     <div class="card m-3">
                         <div class="card-header">
                             <b>{{ $post->title }}</b>
-                            <div class="text-right">口コミ総数{{ $post->comments->count() }}</div>
+                            <div class="text-right">口コミ{{ $post->comments->count() }}</div>
                         </div>
 
                         <div class="card-header">

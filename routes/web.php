@@ -30,8 +30,9 @@ Route::resource('posts', 'PostsController');
 //コメント投稿はログイン　新規投稿も追加する　リダイレクトを決める
 Route::group(['middleware' => 'auth'], function() {
     Route::resource('comments', 'CommentsController', ['only' => ['store']]);
+
+    Route::post('posts/{id}/likes', 'LikesController@like');
+
+    Route::delete('posts/{id}/likes/{like_id}', 'LikesController@unlike');
 });
 
-Route::post('posts/{id}/likes', 'LikesController@like');
-
-Route::delete('posts/{id}/likes/{like_id}', 'LikesController@unlike');

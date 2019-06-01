@@ -17,9 +17,9 @@
                         </div>
 
                         <div class="col-md-6">
-                            <!-- いいね機能 -->
-                            @if (Auth::check())
-                                <div class="mb-2">
+                            <div class="row justify-content-left mb-2">
+                                <div class="col-xs-6 pl-3">
+                                    <!-- いいね機能 -->
                                     @if ($like)
                                     {{ Form::model($post, array('action' => array('LikesController@unlike', $post->id, $like->id))) }}
                                     {{ Form::hidden('_method','DELETE') }}
@@ -33,12 +33,15 @@
                                     {{ Form::model($post, array('action' => array('LikesController@like', $post->id))) }}
                                         <button type="submit">
                                             <!-- <img src="/images/icon_heart.svg"> -->
-                                            Like {{ $post->likes_count }}
+                                            Like <span class="badge badge-light">{{ $post->likes_count }}</span>
                                         </button>
                                     {!! Form::close() !!}
                                     @endif
                                 </div>
-                            @endif
+                                <div class="col-xs-6 pl-2">
+                                    口コミ{{ $post->comments->count() }}
+                                </div>
+                            </div>
 
                             <div class="mb-2">
                                 @foreach($post->tags as $tag)
