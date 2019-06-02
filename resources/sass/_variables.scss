@@ -18,6 +18,9 @@ $green: #38c172;
 $teal: #4dc0b5;
 $cyan: #6cb2eb;
 $brown: #B38355;
+// $brown2: #7b5544;
+$brown3: #945d4b;
+$brown4: #e2c8aa;
 
 // ここでbootstrapのテーマカラーを追加する　あとはnpm run devまでやればOK
 $theme-colors: (
@@ -27,4 +30,6 @@ $theme-colors: (
   "orange":  $orange,
   "teal":    $teal,
   "brown":   $brown,
+  "brown3":  $brown3,
+  "brown4":  $brown4,
 );

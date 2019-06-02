@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container text-brown3">
         <div class="row justify-content-center">
-            <div class="col-md-8 col-lg-6 col-md-offset-2 col-lg-offset-3">
+            <div class="col-md-8 col-lg-6 col-md-offset-2 col-lg-offset-3 m-3">
                 <!-- <div class="border p-4"> -->
                     <h2 class="mb-3 mt-2">
                         {{ $post->title }}
@@ -33,7 +33,7 @@
                                     {{ Form::model($post, array('action' => array('LikesController@like', $post->id))) }}
                                         <button type="submit">
                                             <!-- <img src="/images/icon_heart.svg"> -->
-                                            Like <span class="badge badge-light">{{ $post->likes_count }}</span>
+                                            Like {{ $post->likes_count }}
                                         </button>
                                     {!! Form::close() !!}
                                     @endif
@@ -45,7 +45,7 @@
 
                             <div class="mb-2">
                                 @foreach($post->tags as $tag)
-                                    <p class="badge badge-pill badge-info">{{$tag->name}}</p>
+                                    <p class="badge badge-brown text-brown4">{{$tag->name}}</p>
                                 @endforeach
                             </div>
                             <p class="mb-2">
@@ -78,13 +78,13 @@
                         </div>
                     </div>
 
-                    <section class="mb-4">
+                    <section class="m-2">
                         <h2 class="h5 mb-4">
                             <b>口コミ</b>
                         </h2>
 
                         @forelse($post->comments as $comment)
-                            <div class="border-top p-4">
+                            <div class="border-top border-brown p-4">
                                 <div class="row">
                                     <div class="col-xs-2">
                                         <a href="{{ route('UserSearch', ['id' => $comment->user->id ])}}">
@@ -106,7 +106,7 @@
                             <small class="text-secondary">口コミはまだありません。</small>
                         @endforelse
                     </section>
-                    <form class="mb-4" method="POST" action="{{ route('comments.store') }}">
+                    <form class="m-2" method="POST" action="{{ route('comments.store') }}">
                         @csrf
 
                         <input
@@ -134,7 +134,7 @@
                         </div>
 
                         <div class="mt-4">
-                            <button type="submit" class="btn btn-primary">
+                            <button type="submit" class="btn btn-brown text-brown4">
                                 コメントする
                             </button>
                         </div>
