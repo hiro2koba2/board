@@ -11,7 +11,7 @@
                 <div class="col-lg-6">
                     <div class="card m-3 border-brown bg-brown4 text-brown3">
                         <div class="card-header">
-                            <b>{{ $post->title }}</b>
+                            <h4><b>{{ $post->title }}</b></h4>
                             <div class="text-right">口コミ{{ $post->comments->count() }}</div>
                         </div>
 

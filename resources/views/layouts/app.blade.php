@@ -48,7 +48,7 @@
                         @else
                             <li class="nav-item dropdown">
 
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle text-brown4" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     <!-- avatar image -->
                                     @if ( null !== auth()->user()->getFirstMedia('avatar') )
                                     <img src="{{ auth()->user()->getFirstMedia('avatar')->getUrl('thumb') }}" width="40" height="40" alt="" class="rounded-circle mr-2">
@@ -57,16 +57,16 @@
                                 </a>
 
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                <div class="dropdown-menu dropdown-menu-right bg-brown" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item text-brown4" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
-                                    <a class="dropdown-item" href="{{ route('profile') }}">プロフィール</a>
+                                    <a class="dropdown-item text-brown4" href="{{ route('profile') }}">プロフィール</a>
 
-                                    <a href="{{ route('posts.create') }}" class="dropdown-item">
+                                    <a href="{{ route('posts.create') }}" class="dropdown-item text-brown4">
                                         投稿する
                                     </a>
 
@@ -81,6 +81,12 @@
                 </div>
             </div>
         </nav>
+
+        @if (session('flash_message'))
+            <div class="alert alert-success text-center" role="alert">
+                {{ session('flash_message')}}
+            </div>
+        @endif
 
         <main class="py-4">
             @yield('content')

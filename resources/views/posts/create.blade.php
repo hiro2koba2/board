@@ -4,7 +4,7 @@
 
 <div class="container">
     <div class="row justify-content-center">
-        <div class="border col-md-offset-3 col-md-6 p-5 m-3">
+        <div class="border col-md-offset-3 col-md-6 p-5 m-3 border-brown bg-brown4 text-brown3">
             <h1 class="h5 mb-4">
                 投稿の新規作成
             </h1>
