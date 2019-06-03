@@ -19,8 +19,8 @@
     <!-- Styles (Laravel Mix) -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 </head>
-<body>
-    <div id="app" class="bg-brown4">
+<body class="bg-brown4">
+    <div id="app">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel bg-brown fixed-top" >
             <div class="container">
                 <a class="navbar-brand text-brown4" href="{{ url('/') }}">
