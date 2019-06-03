@@ -58,10 +58,10 @@ class Post extends Model implements HasMedia
             ->singleFile()
             // これでアップロードできるのは一つだけ、一つ前のものは自動で削除
 
-            ->acceptsFile(function (File $file) {
-                return $file->mimeType === 'image/png';
-            })
-            // ファイルの種類を指定できる　今はなし
+            // ->acceptsFile(function (File $file) {
+            //     return $file->mimeType === 'image/png';
+            // })
+            // ファイルの種類を指定できる　pngのみにした
 
             ->registerMediaConversions(function (Media $media) {
                 $this->addMediaConversion('card')
@@ -73,10 +73,4 @@ class Post extends Model implements HasMedia
                     ->width(50);
             });
     }
-
-    // try {
-    //     registerMediaCollections();
-    // } catch (\FileUnacceptableForCollection $e) {
-    //     return $e->getMessage();
-    // }
 }

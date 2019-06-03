@@ -2,12 +2,12 @@
 
 @section('content')
 
-<div class="container">
+<div class="container py-5">
     <div class="row justify-content-center">
         <div class="border col-md-offset-3 col-md-6 p-5 m-3 border-brown bg-brown4 text-brown3">
-            <h1 class="h5 mb-4">
+            <h2 class="mb-4">
                 投稿の新規作成
-            </h1>
+            </h2>
 
             <form method="POST" action="{{ route('posts.store') }}" enctype="multipart/form-data">
                 @csrf
@@ -44,6 +44,11 @@
                             >
                             {{$tag->name}}
                         @endforeach
+                        <!-- @if ($errors->has('tags[]'))
+                            <div class="invalid-feedback">
+                                {{ $errors->first('tags[]') }}
+                            </div>
+                        @endif -->
                     </div>
 
                     <div class="form-group">
@@ -65,11 +70,11 @@
                     </div>
 
                     <div class="form-group mb-3">
-                        <label for="image">
+                        <label>
                             カフェ画像
                         </label>
 
-                        <input type="file" name="cafeimage" id="inputGroupFile01">
+                        <input type="file" name="cafeimage" class="form-control {{ $errors->has('cafeimage') ? 'is-invalid' : '' }}">
                         @if ($errors->has('cafeimage'))
                             <div class="invalid-feedback">
                                 {{ $errors->first('cafeimage') }}
@@ -80,8 +85,6 @@
                                 {{ session('error')}}
                             </div>
                         @endif
-
-                        <!-- セットした段階で何かしら表示されないと良くない　改善余地 -->
                     </div>
 
                     <div class="mt-5">

@@ -84,12 +84,12 @@ class User extends Authenticatable implements HasMedia
             ->acceptsFile(function (File $file) {
                 return $file->mimeType === 'image/png';
             })
-            // ファイルの種類を指定できる　今はなし
+            // ファイルの種類を指定できる　pngのみに
 
             ->registerMediaConversions(function (Media $media) {
             $this->addMediaConversion('card')
-                ->width(200)
-                ->height(200);
+                ->width(100)
+                ->height(100);
             $this->addMediaConversion('thumb')
                 ->width(50)
                 ->height(50);

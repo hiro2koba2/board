@@ -43,6 +43,8 @@ class PostsController extends Controller
         $params = $request->validate([
             'title' => 'required|max:50',
             'body' => 'required|max:1000',
+            // 'tags[]' => 'required',
+            'cafeimage' => 'required|image|max:100',
         ]);
         // バリデーションも移すべきか
 
@@ -118,8 +120,6 @@ class PostsController extends Controller
             'title' => 'required|max:50',
             'body' => 'required|max:1000',
         ]);
-
-        // 更新処理に問題あり
 
         // ここが肝　全てを書き換えるわけではない　だからユーザー情報をいじる必要はない　タグはsyncを使う必要ある
         $post->fill($params)->save();

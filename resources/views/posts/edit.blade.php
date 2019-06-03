@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="container mt-4">
+<div class="container py-5">
     <div class="border p-4 border-brown bg-brown4 text-brown3">
         <h1 class="h5 mb-4">
             投稿の編集

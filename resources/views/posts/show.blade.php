@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container text-brown3">
+    <div class="container text-brown3 py-5">
         <div class="row justify-content-center">
             <div class="col-md-8 col-lg-6 col-md-offset-2 col-lg-offset-3 m-3">
                 <h2 class="mb-3 mt-2">
@@ -11,7 +11,7 @@
                 <div class="row justify-content-center mb-3">
                     <div class="col-md-6">
                         @if ( null !== $post->getFirstMedia('postImages') )
-                            <img src="{{ $post->getFirstMedia('postImages')->getUrl('card') }}" width="" height="" alt="カフェの写真" class="round-circle mb-3">
+                            <img src="{{ $post->getFirstMedia('postImages')->getUrl('card') }}" width="" height="" alt="カフェの写真" class="mb-3">
                         @endif
                     </div>
 

@@ -37,6 +37,10 @@ class AvatarController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'avatar' => 'required|image|max:100'
+        ]);
+
         $user = auth()->user();
 
         $user->addMedia($request->avatar)->toMediaCollection('avatar');
