@@ -3,7 +3,7 @@
 @section('content')
 <div class="container py-5">
     <div class="row justify-content-center">
-        <div class="col-md-8 col-lg-6 col-md-offset-2 col-lg-offset-3">
+        <div class="col-md-8 col-lg-6 col-md-offset-2 col-lg-offset-3 bg-brown4 text-brown3">
             @if (session('error'))
             <div class="alert alert-danger text-center" role="alert">
                 {{ session('error')}}
@@ -13,9 +13,9 @@
 
             <form action="{{ route('avatar.store')}}" method="post" enctype="multipart/form-data">
                 @csrf
-                <div class="form-group mb-3">
+                <div class="form-group mt-3">
                     <label>
-                        プロフィール画像：
+                        プロフィール画像をここで変更できます
                     </label>
 
                     <input type="file" name="avatar" class="form-control {{ $errors->has('avatar') ? 'is-invalid' : '' }}">
