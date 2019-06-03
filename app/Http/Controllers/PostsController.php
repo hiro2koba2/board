@@ -58,7 +58,7 @@ class PostsController extends Controller
         $post->addMedia($request->cafeimage)->toMediaCollection('postImages');
         // メディアライブラリに追加
 
-        return redirect()->route('index')->with('flash_message', '投稿が完了しました');
+        return redirect()->route('index')->with('status', '投稿が完了しました');
         // これで名前をつけたルートに飛べる
     }
 
@@ -126,7 +126,7 @@ class PostsController extends Controller
 
         $post->tags()->sync($request->tags);
 
-        return redirect()->route('posts.show', ['post' => $post])->with('flash_message', '更新が完了しました');
+        return redirect()->route('posts.show', ['post' => $post])->with('status', '更新が完了しました');
     }
 
     /**
@@ -147,6 +147,6 @@ class PostsController extends Controller
             $post->delete();
         });
 
-        return redirect()->route('index');
+        return redirect()->route('index')->with('status', '投稿を削除しました');
     }
 }

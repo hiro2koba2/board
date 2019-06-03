@@ -64,7 +64,7 @@
                                         {{ __('Logout') }}
                                     </a>
 
-                                    <a class="dropdown-item text-brown4" href="{{ route('profile') }}">プロフィール</a>
+                                    <a class="dropdown-item text-brown4" href="{{ route('profile', ['id' => auth()->user()->id ])}}">プロフィール</a>
 
                                     <a href="{{ route('posts.create') }}" class="dropdown-item text-brown4">
                                         投稿する
@@ -82,9 +82,9 @@
             </div>
         </nav>
 
-        @if (session('flash_message'))
+        @if (session('status'))
             <div class="alert alert-success text-center" role="alert">
-                {{ session('flash_message')}}
+                {{ session('status')}}
             </div>
         @endif
 

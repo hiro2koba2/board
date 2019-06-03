@@ -65,11 +65,12 @@ class Post extends Model implements HasMedia
 
             ->registerMediaConversions(function (Media $media) {
                 $this->addMediaConversion('card')
-                    ->width(200)
-                    ->height(200);
+                // 縦幅を200とする、そこから横幅を同じ分取る
+                    ->height(200)
+                    ->width(200);
                 $this->addMediaConversion('thumb')
-                ->width(50)
-                ->height(50);
+                    ->height(50)
+                    ->width(50);
             });
     }
 }

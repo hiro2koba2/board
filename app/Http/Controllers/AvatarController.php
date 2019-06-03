@@ -42,11 +42,6 @@ class AvatarController extends Controller
         $user->addMedia($request->avatar)->toMediaCollection('avatar');
 
         return redirect()->back();
-
-        // return $request->all();
-        // ただブラウザにjson表記する
-
-        // return dd($request);
     }
 
     /**
