@@ -10,6 +10,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
+// 例外処理
+use Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\FileUnacceptableForCollection;
+
 // 画像Fileの調整で必要
 use Spatie\MediaLibrary\File;
 
@@ -74,23 +77,23 @@ class User extends Authenticatable implements HasMedia
      */
     public function registerMediaCollections()
     {
-        $this
-            ->addMediaCollection('avatar')
+        $this->addMediaCollection('avatar')
             ->singleFile()
             // これでアップロードできるのは一つだけ、一つ前のものは自動で削除
 
-            // ->acceptsFile(function (File $file) {
-            //     return $file->mimeType === 'image/png';
-            // })
+            ->acceptsFile(function (File $file) {
+                return $file->mimeType === 'image/png';
+            })
             // ファイルの種類を指定できる　今はなし
 
             ->registerMediaConversions(function (Media $media) {
-                $this->addMediaConversion('card')
-                    ->width(200)
-                    ->height(200);
-                $this->addMediaConversion('thumb')
-                    ->width(50)
-                    ->height(50);
-            });
+            $this->addMediaConversion('card')
+                ->width(200)
+                ->height(200);
+            $this->addMediaConversion('thumb')
+                ->width(50)
+                ->height(50);
+        });
+
     }
 }

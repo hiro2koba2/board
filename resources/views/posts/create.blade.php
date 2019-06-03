@@ -64,19 +64,23 @@
                         @endif
                     </div>
 
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">画像</span>
-                        </div>
-                        <div class="custom-file">
-                            <input type="file" name="cafeimage" class="custom-file-input" id="inputGroupFile01">
-                            @if ($errors->has('cafeimage'))
-                                <div class="invalid-feedback">
-                                    {{ $errors->first('cafeimage') }}
-                                </div>
-                            @endif
-                            <label class="custom-file-label" for="inputGroupFile01">ここから</label>
-                        </div>
+                    <div class="form-group mb-3">
+                        <label for="image">
+                            カフェ画像
+                        </label>
+
+                        <input type="file" name="cafeimage" id="inputGroupFile01">
+                        @if ($errors->has('cafeimage'))
+                            <div class="invalid-feedback">
+                                {{ $errors->first('cafeimage') }}
+                            </div>
+                        @endif
+                        @if (session('error'))
+                            <div class="alert alert-danger text-center" role="alert">
+                                {{ session('error')}}
+                            </div>
+                        @endif
+
                         <!-- セットした段階で何かしら表示されないと良くない　改善余地 -->
                     </div>
 
