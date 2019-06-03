@@ -50,7 +50,9 @@
 
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle text-brown4" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     <!-- avatar image -->
-                                    @if ( null !== auth()->user()->getFirstMedia('avatar') )
+                                    @if ( null === auth()->user()->getFirstMedia('avatar') )
+                                    <img src="/storage/noimage.png" alt="noimage" width="40" height="40" alt="" class="rounded-circle mr-2">
+                                    @else
                                     <img src="{{ auth()->user()->getFirstMedia('avatar')->getUrl('thumb') }}" width="40" height="40" alt="" class="rounded-circle mr-2">
                                     @endif
                                     {{ Auth::user()->name }} <span class="caret"></span>

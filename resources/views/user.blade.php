@@ -10,7 +10,7 @@
                     <h5 class="text-brown3">
                     ユーザー検索：
                     @if( $user->getFirstMedia('avatar') === null)
-                        <img src="/storage/noimage.svg" alt="noimage" width="50" height="50" alt="" class="rounded-circle mr-1">の投稿
+                        <img src="/storage/noimage.png" alt="noimage" width="50" height="50" alt="" class="rounded-circle mr-1">の投稿
                     @else
                         <img src="{{ $user->getFirstMedia('avatar')->getUrl('thumb')  }}" width="50" height="50" alt="" class="rounded-circle mr-1">の投稿
                     @endif
