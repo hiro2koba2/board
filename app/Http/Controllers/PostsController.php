@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Http\Requests\PostRequest;
 use App\Post;
 use App\Tag;
 use Auth;
@@ -38,16 +38,8 @@ class PostsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
-        $params = $request->validate([
-            'title' => 'required|max:50',
-            'body' => 'required|max:1000',
-            // 'tags[]' => 'required',
-            'cafeimage' => 'required|image|max:100',
-        ]);
-        // バリデーションも移すべきか
-
         $id = Auth::id();
 
         $params += array('user_id' => $id);
@@ -109,22 +101,19 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update($id, Request $request)
+    public function update($id, PostRequest $request)
     {
         $post = Post::findOrFail($id);
 
         $this->authorize('update', $post);
         // ポリシー
 
-        $params = $request->validate([
-            'title' => 'required|max:50',
-            'body' => 'required|max:1000',
-        ]);
-
         // ここが肝　全てを書き換えるわけではない　だからユーザー情報をいじる必要はない　タグはsyncを使う必要ある
         $post->fill($params)->save();
 
         $post->tags()->sync($request->tags);
+
+        $post->addMedia($request->cafeimage)->toMediaCollection('postImages');
 
         return redirect()->route('posts.show', ['post' => $post])->with('status', '更新が完了しました');
     }

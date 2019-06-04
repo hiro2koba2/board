@@ -9,7 +9,7 @@
                 投稿の編集
             </h1>
 
-            <form method="POST" action="{{ route('posts.update', ['post' => $post]) }}">
+            <form method="POST" action="{{ route('posts.update', ['post' => $post]) }}" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
 
@@ -68,18 +68,18 @@
                         @endif
                     </div>
 
-                    <!-- <div class="form-group mb-3">
+                    <div class="form-group mb-3">
                         <label>
                             カフェ画像
                         </label>
 
-                        <input type="file" name="cafeimage" class="form-control {{ $errors->has('cafeimage') ? 'is-invalid' : '' }}">
+                        <input type="file" name="cafeimage" value="{{ $post->getFirstMedia('postImages')->getUrl('card') }}" class="form-control {{ $errors->has('cafeimage') ? 'is-invalid' : '' }}">
                         @if ($errors->has('cafeimage'))
                             <div class="invalid-feedback">
                                 {{ $errors->first('cafeimage') }}
                             </div>
                         @endif
-                    </div> -->
+                    </div>
 
                     <div class="mt-5">
                         <a class="btn btn-secondary" href="{{ route('index') }}">

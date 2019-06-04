@@ -80,6 +80,8 @@
                                 {{ $errors->first('cafeimage') }}
                             </div>
                         @endif
+
+                        <!-- メディアライブラリの例外をキャッチするのに必要な設定　通常のものだけにするのでなしに -->
                         <!-- @if (session('error'))
                             <div class="alert alert-danger text-center" role="alert">
                                 {{ session('error')}}

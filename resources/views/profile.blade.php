@@ -28,6 +28,9 @@
 
                 <input type="submit" value="Upload" class="btn btn-success">
             </form>
+            <a href="{{ route('UserSearch', ['id' => auth()->user()->id ]) }}" class="btn btn-primary my-3">{{ auth()->user()->name }}の投稿一覧</a>
+            <a href="{{ route('UserLikes', ['id' => auth()->user()->id ])}}" class="btn btn-primary my-3">{{ auth()->user()->name }}のいいねした記事一覧</a>
+
         </div>
     </div>
 </div>
