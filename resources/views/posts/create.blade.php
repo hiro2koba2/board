@@ -80,11 +80,11 @@
                                 {{ $errors->first('cafeimage') }}
                             </div>
                         @endif
-                        @if (session('error'))
+                        <!-- @if (session('error'))
                             <div class="alert alert-danger text-center" role="alert">
                                 {{ session('error')}}
                             </div>
-                        @endif
+                        @endif -->
                     </div>
 
                     <div class="mt-5">

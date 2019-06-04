@@ -3,7 +3,6 @@
 @section('content')
 <div class="container py-5">
     <div class="row justify-content-center">
-
         <div class="col-md-8">
             <div class="row justify-content-center">
             <!-- この中でさらに12等分と考えて colの数値を決める -->
