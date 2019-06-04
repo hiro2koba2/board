@@ -23,6 +23,9 @@ Route::get('tags/{id}', 'SearchPostWithTagController')->name('TagSearch');
 // 特定ユーザーのポストだけを返すルート
 Route::get('users/{id}', 'UsersPostSearchController')->name('UserSearch');
 
+// 特定のユーザーがいいねしたポストを返すルート
+Route::get('users/{id}/likes', 'UserLikesPostsController')->name('UserLikes');
+
 Route::resource('avatar', 'AvatarController', ['only' => ['index', 'store']]);
 
 Route::resource('posts', 'PostsController');

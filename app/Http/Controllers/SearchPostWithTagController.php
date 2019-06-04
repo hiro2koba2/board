@@ -9,11 +9,6 @@ use Auth;
 
 class SearchPostWithTagController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function __invoke($id)
     {
         // タグのidが渡ってきてる。それと一致するものを持つポストをviewに返すことでOK コレクションを降順に

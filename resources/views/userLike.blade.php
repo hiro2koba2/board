@@ -16,35 +16,35 @@
                     </h5>
                 </div>
                 <div class="row justify-content-center">
-                @if(!empty($posts->first()))
-                    @foreach($posts as $post)
+                @if(!empty($likes->first()))
+                    @foreach($likes as $like)
                         <div class="col-lg-6">
                             <div class="card m-3 border-brown bg-brown4 text-brown3">
                                 <div class="card-header">
-                                    <h5><b>{{ $post->title }}</b></h5>
+                                    <h5><b>{{ $like->post->title }}</b></h5>
                                     <div class="text-left">
                                         <h5><b>
-                                        Like{{$post->likes_count}}&nbsp;
-                                        口コミ{{ $post->comments->count() }}
+                                        Like{{ $like->post->likes_count}}&nbsp;
+                                        口コミ{{ $like->post->comments->count() }}
                                         </b></h5>
                                     </div>
                                 </div>
 
                                 <div class="card-header">
                                     <h5>
-                                        @foreach($post->tags as $tag)
+                                        @foreach($like->post->tags as $tag)
                                         <a href="{{ route('TagSearch', ['id' => $tag->id]) }}" class="badge badge-brown text-brown4">{{ $tag->name }}</a>
                                         @endforeach
                                     </h5>
                                 </div>
 
                                 <div class="card-body">
-                                    @if ( null !== $post->getFirstMedia('postImages') )
-                                        <img src="{{ $post->getFirstMedia('postImages')->getUrl('card') }}" width="" height="" alt="" class="round-circle mr-3">
+                                    @if ( null !== $like->post->getFirstMedia('postImages') )
+                                        <img src="{{ $like->post->getFirstMedia('postImages')->getUrl('card') }}" width="" height="" alt="" class="round-circle mr-3">
                                     @endif
                                 </div>
                                 <div class="card-footer bg-brown text-right">
-                                    <a class="card-link text-brown4" href="{{ route('posts.show', ['post' => $post]) }}">
+                                    <a class="card-link text-brown4" href="{{ route('posts.show', ['post' => $like->post]) }}">
                                         続きを読む
                                     </a>
                                 </div>
@@ -64,7 +64,7 @@
                     <h4 class="font-italic">ユーザー名・{{ $user->name }}</h4>
                     <p class="mb-0">
                         <br>
-                        <a href="">{{ $user->name }}の記事一覧</a>
+                        <a href="{{ route('UserSearch', ['id' => $like->post->user->id ]) }}">{{ $user->name }}の記事一覧</a>
                         <br>
                     </p>
                 </div>

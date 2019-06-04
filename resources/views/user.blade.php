@@ -65,13 +65,13 @@
                     <h4 class="font-italic">ユーザー名・{{ $user->name }}</h4>
                     <p class="mb-0">
                         <br>
-                        {{ $user->name }}のいいねした記事一覧<br>
+                        <a href="{{ route('UserLikes', ['id' => $user->id ])}}">{{ $user->name }}のいいねした記事一覧</a>
                         <br>
-                        <ul>
+                        <!-- <ul>
                             <li>タグ機能</li>
                             <li>いいね機能</li>
                             <li>画像投稿</li>
-                        </ul>
+                        </ul> -->
                     </p>
                 </div>
             @endauth
