@@ -64,7 +64,7 @@
                     <h4 class="font-italic">ユーザー名・{{ $user->name }}</h4>
                     <p class="mb-0">
                         <br>
-                        <a href="{{ route('UserSearch', ['id' => $like->post->user->id ]) }}">{{ $user->name }}の記事一覧</a>
+                        <a href="{{ route('UserSearch', ['id' => $user->id ]) }}">{{ $user->name }}の記事一覧</a>
                         <br>
                     </p>
                 </div>
