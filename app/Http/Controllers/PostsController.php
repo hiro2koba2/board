@@ -40,11 +40,12 @@ class PostsController extends Controller
      */
     public function store(PostRequest $request)
     {
+        // $post->fill($request->all())->save();
+
+        $post = Post::create($request);
+
         $id = Auth::id();
-
-        $params += array('user_id' => $id);
-
-        $post = Post::create($params);
+        $post += array('user_id' => $id);
 
         $post->tags()->sync($request->tags);
         // tags()以降がタグ付与の設定
@@ -108,8 +109,7 @@ class PostsController extends Controller
         $this->authorize('update', $post);
         // ポリシー
 
-        // ここが肝　全てを書き換えるわけではない　だからユーザー情報をいじる必要はない　タグはsyncを使う必要ある
-        $post->fill($params)->save();
+        $post->fill($request->all())->save();
 
         $post->tags()->sync($request->tags);
 
