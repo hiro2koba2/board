@@ -40,12 +40,13 @@ class PostsController extends Controller
      */
     public function store(PostRequest $request)
     {
-        // $post->fill($request->all())->save();
-
-        $post = Post::create($request);
-
         $id = Auth::id();
-        $post += array('user_id' => $id);
+
+        $post = Post::create([
+            'user_id' => $id,
+            'title' => $request->title,
+            'body' => $request->body,
+        ]);
 
         $post->tags()->sync($request->tags);
         // tags()以降がタグ付与の設定
