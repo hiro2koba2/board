@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8 col-lg-6 col-md-offset-2 col-lg-offset-3 m-3">
                 <h2 class="mb-3 mt-2">
-                    {{ $post->title }}
+                    <b>{{ $post->title }}</b>
                 </h2>
 
                 <div class="row justify-content-center mb-3">
@@ -54,7 +54,8 @@
                             #123 St. Kansas City, MO<br/>
                             +34 1234 5678 <br/>
                             <a href="#">  name@email.com</a> <br/>
-                            投稿者：{{ $post->user->name }} <br>
+                            投稿者：
+                            <a href="{{ route('UserSearch', ['id' => $post->user->id ]) }}">{{ $post->user->name }}</a> <br/>
                         </address>
 
                         @can('update', $post)

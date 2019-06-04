@@ -4,11 +4,11 @@
 <div class="container py-5">
     <div class="row justify-content-center">
 
-        <div class="col-md-8">
-            <!-- ここの処理のチェック必須 -->
+        <div class="col-md-8 text-brown3">
                 <div class="m-4">
-                    <h5 class="text-brown3">
+                    <h5>
                     ユーザー検索：
+                    <!-- 最初は全員プロフィール画像なしなので、エラーを出さないように -->
                     @if( $user->getFirstMedia('avatar') === null)
                         <img src="/storage/noimage.png" alt="noimage" width="50" height="50" alt="" class="rounded-circle mr-1">の投稿
                     @else
@@ -17,6 +17,7 @@
                     </h5>
                 </div>
                 <div class="row justify-content-center">
+                @if(!empty($posts->first()))
                     @foreach($posts as $post)
                         <div class="col-lg-6">
                             <div class="card m-3 border-brown bg-brown4 text-brown3">
@@ -50,22 +51,28 @@
                                 </div>
                             </div>
                         </div>
-                @endforeach
+                    @endforeach
+                @else
+                    <p>{{$user->name}}の投稿はまだありません</p>
+                @endif
                 </div>
         </div>
 
         <aside class="col-md-4 text-brown3">
             <!-- 認証ずみ -->
             @auth
-                <div class="card">
-                <!-- 新規のユーザーの場合などのための措置 -->
-                @if ( null !== $user->getFirstMedia('avatar') )
-                    <img class="card-img-top" src="{{ $user->getFirstMedia('avatar')->getUrl('card') }}" alt="Card image cap">
-                @endif
-                    <div class="card-body">
-                        <h5 class="card-title">ユーザー名・{{ $user->name }}</h5>
-                        <p class="card-text"></p>
-                    </div>
+                <div class="p-3 mb-3">
+                    <h4 class="font-italic">ユーザー名・{{ $user->name }}</h4>
+                    <p class="mb-0">
+                        <br>
+                        {{ $user->name }}のいいねした記事一覧<br>
+                        <br>
+                        <ul>
+                            <li>タグ機能</li>
+                            <li>いいね機能</li>
+                            <li>画像投稿</li>
+                        </ul>
+                    </p>
                 </div>
             @endauth
             <!-- 認証してない場合 -->
