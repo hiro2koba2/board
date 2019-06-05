@@ -89,7 +89,7 @@
                                 <div class="col-xs-2">
                                     <a href="{{ route('UserSearch', ['id' => $comment->user->id ])}}">
                                         @if ($comment->user->getFirstMedia('avatar') === null )
-                                        <img src="/storage/noimage.png" alt="noimage" width="50" height="50" alt="" class="rounded-circle mr-1">
+                                        <img src="/storage/noimage.png" alt="noimage" width="50" height="50" alt="" class="rounded-circle mr-4">
                                         @else
                                         <img src="{{ $comment->user->getFirstMedia('avatar')->getUrl('thumb') }}" width="50" height="50" alt="" class="rounded-circle mr-4">
                                         @endif

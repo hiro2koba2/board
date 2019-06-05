@@ -9,11 +9,11 @@
                 {{ session('error')}}
             </div>
             @endif
-            <h5 class="card-title">{{ auth()->user()->name }}</h5>
+            <h3 class="card-title my-3">ユーザー名：{{ auth()->user()->name }}</h3>
 
             <form action="{{ route('avatar.store')}}" method="post" enctype="multipart/form-data">
                 @csrf
-                <div class="form-group mt-3">
+                <div class="form-group my-3">
                     <label>
                         プロフィール画像をここで変更できます
                     </label>
@@ -28,7 +28,8 @@
 
                 <input type="submit" value="Upload" class="btn btn-success">
             </form>
-            <a href="{{ route('UserSearch', ['id' => auth()->user()->id ]) }}" class="btn btn-primary my-3">{{ auth()->user()->name }}の投稿一覧</a>
+            <br>
+            <a href="{{ route('UserSearch', ['id' => auth()->user()->id ]) }}" class="btn btn-primary my-3">{{ auth()->user()->name }}の投稿一覧</a>&nbsp;&nbsp;
             <a href="{{ route('UserLikes', ['id' => auth()->user()->id ])}}" class="btn btn-primary my-3">{{ auth()->user()->name }}のいいねした記事一覧</a>
 
         </div>
