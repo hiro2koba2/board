@@ -38,4 +38,3 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::delete('posts/{id}/likes/{like_id}', 'LikesController@unlike');
 });
-

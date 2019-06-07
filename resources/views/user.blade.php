@@ -25,8 +25,8 @@
                                     <h5><b>{{ $post->title }}</b></h5>
                                     <div class="text-left">
                                         <h5><b>
-                                        Like{{$post->likes_count}}&nbsp;
-                                        口コミ{{ $post->comments->count() }}
+                                            <i class="fas fa-heart"></i>{{$post->likes_count}}&nbsp;
+                                            <i class="fas fa-comments"></i>{{ $post->comments->count() }}
                                         </b></h5>
                                     </div>
                                 </div>
@@ -67,17 +67,15 @@
                         <br>
                         <a href="{{ route('UserLikes', ['id' => $user->id ])}}">{{ $user->name }}のいいねした記事一覧</a>
                         <br>
-                        <!-- <ul>
-                            <li>タグ機能</li>
-                            <li>いいね機能</li>
-                            <li>画像投稿</li>
-                        </ul> -->
                     </p>
                 </div>
             @endauth
             <!-- 認証してない場合 -->
             @guest
-                <div class="m-4">ログインすれば詳しい<br>ユーザーの情報がわかります</div>
+                <div class="m-4">
+                <h5 class="font-italic">ユーザー名・{{ $user->name }}</h5><br>
+                ログインすれば<br>{{ $user->name }}がいいねした記事を見れます。
+                </div>
             @endguest
         </aside>
 

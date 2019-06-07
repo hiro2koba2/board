@@ -16,8 +16,8 @@
                             <h5><b>{{ $post->title }}</b></h5>
                             <div class="text-left">
                                 <h5><b>
-                                Like{{$post->likes_count}}&nbsp;
-                                口コミ{{ $post->comments->count() }}
+                                    <i class="fas fa-heart"></i>{{$post->likes_count}}&nbsp;
+                                    <i class="fas fa-comments"></i>{{ $post->comments->count() }}
                                 </b></h5>
                             </div>
                         </div>

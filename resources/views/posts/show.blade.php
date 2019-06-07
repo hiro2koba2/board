@@ -16,31 +16,25 @@
                     </div>
 
                     <div class="col-md-6">
-                        <div class="row justify-content-left mb-2">
-                            <div class="col-xs-6 pl-3">
-                                <!-- いいね機能 -->
-                                @if ($like)
-                                {{ Form::model($post, array('action' => array('LikesController@unlike', $post->id, $like->id))) }}
-                                {{ Form::hidden('_method','DELETE') }}
-                                @csrf
-                                    <button type="submit">
-                                        Like {{ $post->likes_count }}
-                                    </button>
-                                {!! Form::close() !!}
-                                @else
-                                {{ Form::model($post, array('action' => array('LikesController@like', $post->id))) }}
-                                    <button type="submit">
-                                        Like {{ $post->likes_count }}
-                                    </button>
-                                {!! Form::close() !!}
-                                @endif
-                            </div>
-                            <div class="col-xs-6 pl-2">
-                                口コミ{{ $post->comments->count() }}
-                            </div>
-                        </div>
+                        <!-- いいね機能 -->
+                        @if ($like)
+                        {{ Form::model($post, array('action' => array('LikesController@unlike', $post->id, $like->id))) }}
+                        {{ Form::hidden('_method','DELETE') }}
+                        @csrf
+                            <button type="submit" class="btn btn-outline-danger">
+                                <i class="fas fa-heart"></i> {{ $post->likes_count }}
+                            </button>
+                        {!! Form::close() !!}
+                        @else
+                        {{ Form::model($post, array('action' => array('LikesController@like', $post->id))) }}
+                            <button type="submit" class="btn btn-outline-danger">
+                                <i class="fas fa-heart"></i> {{ $post->likes_count }}
+                            </button>
+                        {!! Form::close() !!}
+                        @endif
 
-                        <h5>
+
+                        <h5 class="my-2">
                             @foreach($post->tags as $tag)
                                 <span class="badge badge-brown text-brown4">{{$tag->name}}</span>
                             @endforeach
@@ -80,7 +74,7 @@
 
                 <section class="m-2">
                     <h2 class="h5 mb-4">
-                        <b>口コミ</b>
+                        <b>口コミ</b>&nbsp;<i class="fas fa-comments"></i>{{ $post->comments->count() }}
                     </h2>
 
                     @forelse($post->comments as $comment)

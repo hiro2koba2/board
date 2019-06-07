@@ -58,16 +58,11 @@ class Post extends Model implements HasMedia
             ->singleFile()
             // これでアップロードできるのは一つだけ、一つ前のものは自動で削除
 
-            // ->acceptsFile(function (File $file) {
-            //     return $file->mimeType === 'image/png';
-            // })
-            // ファイルの種類を指定できる　pngのみにした
-
             ->registerMediaConversions(function (Media $media) {
                 $this->addMediaConversion('card')
                 // 縦幅を200とする、そこから横幅を同じ分取る
-                    ->height(200)
-                    ->width(200);
+                    ->width(200)
+                    ->height(200);
                 $this->addMediaConversion('thumb')
                     ->height(50)
                     ->width(50);

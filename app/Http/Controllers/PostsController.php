@@ -55,7 +55,7 @@ class PostsController extends Controller
         // メディアライブラリに追加
 
         return redirect()->route('index')->with('status', '投稿が完了しました');
-        // これで名前をつけたルートに飛べる
+        // これで名前をつけたルートに飛べる　フラッシュメッセージ付き
     }
 
     /**
@@ -87,13 +87,13 @@ class PostsController extends Controller
         $post = Post::findOrFail($id);
 
         $this->authorize('update', $post);
-        // ポリシー
+        // 認可（ポリシーの処理） 作った人でなかったらできないよってだけ
 
-        // 全てのタグをここでも表示できるように取り出す
         return view('posts.edit', [
             'post' => $post,
             'tags' => Tag::all()
         ]);
+        // タグを選択するので、全てのタグをここでも表示できるように取り出す
     }
 
     /**
@@ -108,9 +108,10 @@ class PostsController extends Controller
         $post = Post::findOrFail($id);
 
         $this->authorize('update', $post);
-        // ポリシー
+        // 認可　ポリシーの処理
 
         $post->fill($request->all())->save();
+        // 更新処理
 
         $post->tags()->sync($request->tags);
 
@@ -130,12 +131,13 @@ class PostsController extends Controller
         $post = Post::findOrFail($id);
 
         $this->authorize('update', $post);
-        // ポリシー
+        // 認可　ポリシーの処理
 
         \DB::transaction(function () use ($post) {
             $post->comments()->delete();
             $post->delete();
         });
+        // これなんだっけ、忘れた cascadeでいけないのかな
 
         return redirect()->route('index')->with('status', '投稿を削除しました');
     }
