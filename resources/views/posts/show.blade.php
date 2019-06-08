@@ -4,71 +4,70 @@
     <div class="container text-brown3 py-5">
         <div class="row justify-content-center">
             <div class="col-md-8 col-lg-6 col-md-offset-2 col-lg-offset-3 m-3">
-                <div class="text-center">
-                    <h2 class="mb-3 mt-2">
-                        <b>{{ $post->title }}</b>
-                    </h2>
 
-                    <img src="{{ $post->getFirstMedia('postImages')->getUrl('card') }}" width="auto" height="auto" alt="カフェの写真" class="img-fluid mb-2">
+                <h2>
+                    <b>{{ $post->title }}</b>
+                </h2>
 
-                    <!-- いいね機能 -->
-                    @if ($like)
-                    {{ Form::model($post, array('action' => array('LikesController@unlike', $post->id, $like->id))) }}
-                    {{ Form::hidden('_method','DELETE') }}
-                    @csrf
-                        <button type="submit" class="btn btn-outline-danger">
-                            <i class="fas fa-heart"></i> {{ $post->likes_count }}
-                        </button>
-                    {!! Form::close() !!}
-                    @else
-                    {{ Form::model($post, array('action' => array('LikesController@like', $post->id))) }}
-                        <button type="submit" class="btn btn-outline-danger">
-                            <i class="fas fa-heart"></i> {{ $post->likes_count }}
-                        </button>
-                    {!! Form::close() !!}
-                    @endif
+                <!-- <div class="text-center"> -->
+                    <img src="{{ $post->getFirstMedia('postImages')->getUrl('card') }}" alt="カフェの写真" class="img-fluid text-center mb-2">
+                <!-- </div> -->
+                <!-- いいね機能 -->
+                @if ($like)
+                {{ Form::model($post, array('action' => array('LikesController@unlike', $post->id, $like->id))) }}
+                {{ Form::hidden('_method','DELETE') }}
+                @csrf
+                    <button type="submit" class="btn btn-outline-danger">
+                        <i class="fas fa-heart"></i> {{ $post->likes_count }}
+                    </button>
+                {!! Form::close() !!}
+                @else
+                {{ Form::model($post, array('action' => array('LikesController@like', $post->id))) }}
+                    <button type="submit" class="btn btn-outline-danger">
+                        <i class="fas fa-heart"></i> {{ $post->likes_count }}
+                    </button>
+                {!! Form::close() !!}
+                @endif
 
 
-                    <h5 class="my-2">
-                        @foreach($post->tags as $tag)
-                            <span class="badge badge-brown text-brown4">{{$tag->name}}</span>
-                        @endforeach
-                    </h5>
+                <h5 class="my-2">
+                    @foreach($post->tags as $tag)
+                        <span class="badge badge-brown text-brown4">{{$tag->name}}</span>
+                    @endforeach
+                </h5>
 
-                    <p class="mb-2">
-                        <b>投稿本文：</b>{!! nl2br(e($post->body)) !!}
-                    </p>
+                <p class="mb-2">
+                    <b>投稿本文：</b>{!! nl2br(e($post->body)) !!}
+                </p>
 
-                    <address>
-                        #123 St. Kansas City, MO<br/>
-                        +34 1234 5678 <br/>
-                        <a href="#">  name@email.com</a> <br/>
-                        投稿者：
-                        <a href="{{ route('UserSearch', ['id' => $post->user->id ]) }}">{{ $post->user->name }}</a> <br/>
-                    </address>
+                <address>
+                    #123 St. Kansas City, MO<br/>
+                    +34 1234 5678 <br/>
+                    <a href="#">  name@email.com</a> <br/>
+                    投稿者：
+                    <a href="{{ route('UserSearch', ['id' => $post->user->id ]) }}">{{ $post->user->name }}</a> <br/>
+                </address>
 
-                    @can('update', $post)
-                    <!-- ポリシーでチェックしてOKなら表示　所有者なら -->
-                        <form
-                                style="display: inline-block;"
-                                method="POST"
-                                action="{{ route('posts.destroy', ['post' => $post]) }}"
-                                class="mb-5"
-                            >
-                            @csrf
-                            @method('DELETE')
+                @can('update', $post)
+                <!-- ポリシーでチェックしてOKなら表示　所有者なら -->
+                    <form
+                            style="display: inline-block;"
+                            method="POST"
+                            action="{{ route('posts.destroy', ['post' => $post]) }}"
+                            class="mb-5"
+                        >
+                        @csrf
+                        @method('DELETE')
 
-                            <button class="btn btn-danger mr-3">削除する</button>
-                        </form>
+                        <button class="btn btn-danger mr-3">削除する</button>
+                    </form>
 
-                        <a href="{{ route('posts.edit', ['post' => $post]) }}">
-                            <button class="btn btn-info">編集する</button>
-                        </a>
+                    <a href="{{ route('posts.edit', ['post' => $post]) }}">
+                        <button class="btn btn-info">編集する</button>
+                    </a>
+                @endcan
 
-                    @endcan
-                </div>
-
-                <section class="m-2">
+                <section class="m-2 my-5">
                     <h2 class="h5 mb-4">
                         <b>口コミ</b>&nbsp;<i class="fas fa-comments"></i>{{ $post->comments->count() }}
                     </h2>
