@@ -27,16 +27,6 @@
                         </div>
                         <img src="{{ $post->getFirstMedia('postImages')->getUrl('card') }}" class="card-img-top">
 
-                        <!-- <div class="card-body">
-                            <h5 class="card-title">{{ $post->title }}</h5>
-                            <p class="card-text">
-                                <i class="fas fa-heart"></i>{{$post->likes_count}}&nbsp;<i class="fas fa-comments"></i>{{ $post->comments->count() }}<br>
-                                @foreach($post->tags as $tag)
-                                    <a href="{{ route('TagSearch', ['id' => $tag->id]) }}" class="badge badge-brown text-brown4">{{ $tag->name }}</a>
-                                @endforeach
-
-                            </p>
-                        </div> -->
                         <div class="card-footer bg-brown text-right">
                             <!-- card-linkはあると下線を消してくれるので残す -->
                             <a class="card-link text-brown4" href="{{ route('posts.show', ['post' => $post]) }}">

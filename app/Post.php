@@ -59,13 +59,7 @@ class Post extends Model implements HasMedia
             // これでアップロードできるのは一つだけ、一つ前のものは自動で削除
 
             ->registerMediaConversions(function (Media $media) {
-                $this->addMediaConversion('card')
-                // 縦幅を200とする、そこから横幅を同じ分取る
-                    ->width(200)
-                    ->height(200);
-                $this->addMediaConversion('thumb')
-                    ->height(50)
-                    ->width(50);
+                $this->addMediaConversion('card');
             });
     }
 }

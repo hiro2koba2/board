@@ -5,6 +5,9 @@ namespace App\Exceptions;
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
+use Illuminate\Auth\AuthenticationException;
+// 追加　ログインしてくれのリダイレクトを上書きした
+
 class Handler extends ExceptionHandler
 {
     /**
@@ -53,4 +56,13 @@ class Handler extends ExceptionHandler
 
         return parent::render($request, $exception);
     }
+
+    // ログインしてない場合にフラッシュメッセージをつけた
+    protected function unauthenticated($request, AuthenticationException $exception)
+    {
+        return $request->expectsJson()
+                    ? response()->json(['message' => $exception->getMessage()], 401)
+                    : redirect()->guest(route('login'))->with('status_alert', 'ログインしてください');
+    }
+
 }

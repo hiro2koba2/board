@@ -89,6 +89,10 @@
                 <div class="alert alert-success text-center my-4" role="alert">
                     {{ session('status')}}
                 </div>
+            @elseif (session('status_alert'))
+                <div class="alert alert-danger text-center my-2" role="alert">
+                    {{ session('status_alert')}}
+                </div>
             @endif
             @yield('content')
         </main>

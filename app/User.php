@@ -81,18 +81,10 @@ class User extends Authenticatable implements HasMedia
             ->singleFile()
             // これでアップロードできるのは一つだけ、一つ前のものは自動で削除
 
-            // ->acceptsFile(function (File $file) {
-            //     return $file->mimeType === 'image/png';
-            // })
-            // ファイルの種類を指定できる　pngのみに
-
             ->registerMediaConversions(function (Media $media) {
-            // $this->addMediaConversion('card')
-            //     ->width(100)
-            //     ->height(100);
-            $this->addMediaConversion('thumb')
-                ->width(50)
-                ->height(50);
+
+            $this->addMediaConversion('thumb');
+
         });
 
     }

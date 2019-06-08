@@ -38,11 +38,8 @@
                                     </h5>
                                 </div>
 
-                                <div class="card-body">
-                                    @if ( null !== $like->post->getFirstMedia('postImages') )
-                                        <img src="{{ $like->post->getFirstMedia('postImages')->getUrl('card') }}" width="" height="" alt="" class="round-circle mr-3">
-                                    @endif
-                                </div>
+                                <img src="{{ $like->post->getFirstMedia('postImages')->getUrl('card') }}" class="card-img-top">
+
                                 <div class="card-footer bg-brown text-right">
                                     <a class="card-link text-brown4" href="{{ route('posts.show', ['post' => $like->post]) }}">
                                         続きを読む

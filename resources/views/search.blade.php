@@ -30,11 +30,8 @@
                             </h5>
                         </div>
 
-                        <div class="card-body">
-                            @if ( null !== $post->getFirstMedia('postImages') )
-                                <img src="{{ $post->getFirstMedia('postImages')->getUrl('card') }}" width="" height="" alt="" class="round-circle mr-3">
-                            @endif
-                        </div>
+                        <img src="{{ $post->getFirstMedia('postImages')->getUrl('card') }}" class="card-img-top">
+
                         <div class="card-footer bg-brown text-right">
                             <!-- card-linkはあると下線を消してくれるので残す -->
                             <a class="card-link text-brown4" href="{{ route('posts.show', ['post' => $post]) }}">
