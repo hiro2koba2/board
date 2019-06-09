@@ -43,9 +43,11 @@
                 </p>
 
                 <address>
-                    <b>最寄駅：</b>
+                    <b>最寄駅：</b> <br/>
+                    <b>営業時間：</b> <br/>
+                    <b>定休日：</b> <br />
                     <b>住所：</b>#123 St. Kansas City, MO<br/>
-                    <b>TEL：</b>+34 1234 5678 <br/>
+                    <b>電話番号：</b>+34 1234 5678 <br/>
                     <b>Email：</b> name@email.com<br/>
                 </address>
 

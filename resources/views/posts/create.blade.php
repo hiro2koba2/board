@@ -4,9 +4,9 @@
 
 <div class="container py-5">
     <div class="row justify-content-center">
-        <div class="border col-md-offset-3 col-md-6 p-5 m-3 border-brown bg-brown4 text-brown3">
+        <div class="border rounded col-md-offset-3 col-md-6 p-5 m-3 border-brown bg-brown4 text-brown3">
             <h2 class="mb-4">
-                投稿の新規作成
+                <b>投稿の新規作成</b>
             </h2>
 
             <form method="POST" action="{{ route('posts.store') }}" enctype="multipart/form-data">
@@ -90,7 +90,7 @@
                     </div>
 
                     <div class="mt-5">
-                        <a class="btn btn-secondary" href="{{ route('index') }}">
+                        <a class="btn btn-secondary mr-2" href="{{ route('index') }}">
                             キャンセル
                         </a>
 

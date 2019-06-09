@@ -4,10 +4,10 @@
 
 <div class="container py-5">
     <div class="row justify-content-center">
-        <div class="border col-md-offset-3 col-md-6 p-5 m-3 border-brown bg-brown4 text-brown3">
-            <h1 class="h5 mb-4">
-                投稿の編集
-            </h1>
+        <div class="border rounded col-md-offset-3 col-md-6 p-5 m-3 border-brown bg-brown4 text-brown3">
+            <h2 class="mb-4">
+                <b>投稿の編集</b>
+            </h2>
 
             <form method="POST" action="{{ route('posts.update', ['post' => $post]) }}" enctype="multipart/form-data">
                 @csrf
