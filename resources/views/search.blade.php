@@ -6,7 +6,7 @@
 
         <div class="col-md-8">
             <div class="m-4">
-                <h5 class="text-brown3">タグ検索：<span class="badge badge-brown text-brown4">{{ $name }}</span></h5>
+                <h5 class="text-brown3"><b><i class="fas fa-tag"></i>タグ検索：</b><span class="badge badge-brown text-brown4">{{ $name }}</span></h5>
             </div>
             <div class="row justify-content-center">
             @foreach($posts as $post)
@@ -46,7 +46,7 @@
 
         <aside class="col-md-4 text-brown3">
             <div class="p-3 mb-3">
-                <h4 class="font-italic">About</h4>
+                <h4 class="">About</h4>
                 <p class="mb-0">
                     カフェ情報投稿掲示板です。<br>
                     Laravelの勉強に作りました。<br>

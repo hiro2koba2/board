@@ -3,11 +3,11 @@
 @section('content')
 <div class="container py-5">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="row justify-content-center">
+        <!-- <div class="col-md-8">
+            <div class="row justify-content-center"> -->
             <!-- この中でさらに12等分と考えて colの数値を決める -->
             @foreach($posts as $post)
-                <div class="col-lg-6">
+                <div class="col-md-6 col-lg-4">
                     <div class="card m-3 border-brown bg-brown4 text-brown3">
                         <div class="card-header">
                             <h5><b>
@@ -36,14 +36,14 @@
                     </div>
                 </div>
             @endforeach
-            </div>
+            <!-- </div> -->
 
             <div class="d-flex justify-content-center mb-5">
                 {{ $posts->links() }}
             </div>
-        </div>
+        <!-- </div> -->
 
-        <aside class="col-md-4 text-brown3">
+        <!-- <aside class="col-md-4 text-brown3">
             <div class="p-3 mb-3">
                 <h4 class="font-italic">About</h4>
                 <p class="mb-0">
@@ -57,7 +57,7 @@
                     </ul>
                 </p>
             </div>
-        </aside>
+        </aside> -->
 
     </div>
 </div>

@@ -37,15 +37,15 @@
                 </h5>
 
                 <p class="mb-2">
-                    <b>投稿本文：</b>{!! nl2br(e($post->body)) !!}
+                    <b>投稿者：</b>
+                    <a href="{{ route('UserSearch', ['id' => $post->user->id ]) }}">{{ $post->user->name }}</a> <br/>
+                    <b>投稿者コメント：</b>{!! nl2br(e($post->body)) !!}</br>
                 </p>
 
                 <address>
-                    #123 St. Kansas City, MO<br/>
-                    +34 1234 5678 <br/>
-                    <a href="#">  name@email.com</a> <br/>
-                    投稿者：
-                    <a href="{{ route('UserSearch', ['id' => $post->user->id ]) }}">{{ $post->user->name }}</a> <br/>
+                    <b>住所：</b>#123 St. Kansas City, MO<br/>
+                    <b>TEL：</b>+34 1234 5678 <br/>
+                    <b>Email：</b> name@email.com<br/>
                 </address>
 
                 @can('update', $post)
@@ -67,7 +67,7 @@
                     </a>
                 @endcan
 
-                <section class="m-2 my-5">
+                <section class="my-5">
                     <h2 class="h5 mb-4">
                         <b>口コミ</b>&nbsp;<i class="fas fa-comments"></i>{{ $post->comments->count() }}
                     </h2>
@@ -100,7 +100,7 @@
                         <small class="text-secondary">口コミはまだありません。</small>
                     @endforelse
                 </section>
-                <form class="m-2" method="POST" action="{{ route('comments.store') }}">
+                <form method="POST" action="{{ route('comments.store') }}">
                     @csrf
 
                     <input

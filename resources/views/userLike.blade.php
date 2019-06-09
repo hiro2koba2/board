@@ -9,9 +9,9 @@
                     <h5>
                     <!-- 最初は全員プロフィール画像なしなので、エラーを出さないように -->
                         @if( $user->getFirstMedia('avatar') === null)
-                            <img src="/storage/noimage.png" alt="noimage" width="50" height="50" alt="" class="rounded-circle mr-1">がいいねした投稿
+                        <b><img src="/storage/noimage.png" alt="noimage" width="40" height="40" alt="" class="rounded-circle mr-1">がいいねした投稿</b>
                         @else
-                            <img src="{{ $user->getFirstMedia('avatar')->getUrl('thumb')  }}" width="50" height="50" alt="" class="rounded-circle mr-1">がいいねした投稿
+                        <b><img src="{{ $user->getFirstMedia('avatar')->getUrl('thumb')  }}" width="40" height="40" alt="" class="rounded-circle mr-1">がいいねした投稿</b>
                         @endif
                     </h5>
                 </div>
@@ -21,9 +21,9 @@
                         <div class="col-lg-6">
                             <div class="card m-3 border-brown bg-brown4 text-brown3">
                                 <div class="card-header">
-                                    <h5><b>{{ $like->post->title }}</b></h5>
+                                    <h5>{{ $like->post->title }}</b></h5>
                                     <div class="text-left">
-                                        <h5><b>
+                                        <h5>
                                             <i class="fas fa-heart"></i>{{ $like->post->likes_count}}&nbsp;
                                             <i class="fas fa-comments"></i>{{ $like->post->comments->count() }}
                                         </b></h5>
@@ -58,7 +58,7 @@
             <!-- 認証ずみ -->
             @auth
                 <div class="p-3 mb-3">
-                    <h4 class="font-italic">ユーザー名・{{ $user->name }}</h4>
+                    <h4 class="">ユーザー名・{{ $user->name }}</h4>
                     <p class="mb-0">
                         <br>
                         <a href="{{ route('UserSearch', ['id' => $user->id ]) }}">{{ $user->name }}の記事一覧</a>

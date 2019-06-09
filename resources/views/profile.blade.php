@@ -9,9 +9,9 @@
                 {{ session('error')}}
             </div>
             @endif
-            <h3 class="card-title my-3">ユーザー名：{{ auth()->user()->name }}</h3>
+            <h3 class="card-title my-3"><b>ユーザー名：{{ auth()->user()->name }}</b></h3>
 
-            <form action="{{ route('avatar.store')}}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('avatar.store')}}" method="post" enctype="multipart/form-data" class="border border-brown" >
                 @csrf
                 <div class="form-group my-3">
                     <label>
@@ -30,7 +30,7 @@
             </form>
             <br>
             <a href="{{ route('UserSearch', ['id' => auth()->user()->id ]) }}" class="btn btn-primary my-3">{{ auth()->user()->name }}の投稿一覧</a>&nbsp;&nbsp;
-            <a href="{{ route('UserLikes', ['id' => auth()->user()->id ])}}" class="btn btn-primary my-3">{{ auth()->user()->name }}のいいねした記事一覧</a>
+            <a href="{{ route('UserLikes', ['id' => auth()->user()->id ])}}" class="btn btn-primary my-3">{{ auth()->user()->name }}が<i class="fas fa-heart"></i>をつけた記事一覧</a>
 
         </div>
     </div>
