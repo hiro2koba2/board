@@ -14,7 +14,7 @@
                 <!-- </div> -->
                 <!-- いいね機能 -->
                 @if ($like)
-                {{ Form::model($post, array('action' => array('LikesController@unlike', $post->id, $like->id))) }}
+                {{ Form::model($post, array('action' => array('LikeController@unlike', $post->id, $like->id))) }}
                 {{ Form::hidden('_method','DELETE') }}
                 @csrf
                     <button type="submit" class="btn btn-outline-danger">
@@ -22,7 +22,7 @@
                     </button>
                 {!! Form::close() !!}
                 @else
-                {{ Form::model($post, array('action' => array('LikesController@like', $post->id))) }}
+                {{ Form::model($post, array('action' => array('LikeController@like', $post->id))) }}
                     <button type="submit" class="btn btn-outline-danger">
                         <i class="fas fa-heart"></i> {{ $post->likes_count }}
                     </button>

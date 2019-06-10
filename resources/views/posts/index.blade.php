@@ -3,7 +3,7 @@
 @section('content')
 <div class="container py-5">
 
-    <!-- アイキャッチ -->
+    <!-- アイキャッチ これだとアイキャッチにならないが、、-->
     <div class="text-center py-4 text-brown3">
         <b>
             <p>カフェ画像投稿掲示板（タグ機能、いいね機能、画像投稿機能）</p>

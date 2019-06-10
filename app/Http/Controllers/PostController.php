@@ -8,7 +8,7 @@ use App\Post;
 use App\Tag;
 use Auth;
 
-class PostsController extends Controller
+class PostController extends Controller
 {
     /**
      * Display a listing of the resource.

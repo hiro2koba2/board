@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Post;
 use Auth;
 
-class CommentsController extends Controller
+class CommentController extends Controller
 {
     /**
      * Display a listing of the resource.

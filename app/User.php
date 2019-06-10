@@ -10,8 +10,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
-// 例外処理
-use Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\FileUnacceptableForCollection;
+// 例外処理　結局Laravel内部のバリデーションで解決したのでコメントアウト
+// use Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\FileUnacceptableForCollection;
 
 // 画像Fileの調整で必要
 use Spatie\MediaLibrary\File;
@@ -19,7 +19,10 @@ use Spatie\MediaLibrary\File;
 // Conversionへの登録に必要
 use Spatie\MediaLibrary\Models\Media;
 
-class User extends Authenticatable implements HasMedia
+// API認証のため
+use Tymon\JWTAuth\Contracts\JWTSubject;
+
+class User extends Authenticatable implements HasMedia, JWTSubject
 {
     use Notifiable, HasMediaTrait;
 
@@ -49,6 +52,27 @@ class User extends Authenticatable implements HasMedia
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // JWT認証で追加
+
+    /**
+     * Get the identifier that will be stored in the subject claim of the JWT.
+     *
+     * @return mixed
+     */
+    public function getJWTIdentifier() {
+        return $this->getKey();
+    }
+
+    /**
+     * Return a key value array, containing any custom claims to be added to the JWT.
+     *
+     * @return array
+     */
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
 
     /**
      * ユーザーに関連する投稿を取得

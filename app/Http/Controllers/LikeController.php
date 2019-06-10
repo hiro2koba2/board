@@ -8,7 +8,7 @@ use App\Post;
 use App\Like;
 use Auth;
 
-class LikesController extends Controller
+class LikeController extends Controller
 {
     // いいねをつける
     public function like(Request $request, $postId)
@@ -33,6 +33,6 @@ class LikesController extends Controller
         $post->like_by()->findOrFail($likeId)->delete();
 
         return redirect()
-            ->action('PostsController@show', $post->id);
+            ->action('PostController@show', $post->id);
     }
 }
