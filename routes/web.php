@@ -18,10 +18,10 @@ Auth::routes();
 Route::get('profile', 'AvatarController@index')->name('profile');
 
 // タグ検索のルート
-Route::get('tags/{id}', 'SearchPostWithTagController')->name('TagSearch');
+Route::get('tags/{id}', 'SearchPostsWithTagController')->name('TagSearch');
 
 // 特定ユーザーのポストだけを返すルート
-Route::get('users/{id}', 'UsersPostSearchController')->name('UserSearch');
+Route::get('users/{id}', 'SearchUsersPostsController')->name('UserSearch');
 
 // 特定のユーザーがいいねしたポストを返すルート
 Route::get('users/{id}/likes', 'UserLikesPostsController')->name('UserLikes');

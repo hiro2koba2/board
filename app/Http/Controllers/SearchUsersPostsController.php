@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Post;
 
-class UsersPostSearchController extends Controller
+class SearchUsersPostsController extends Controller
 {
     public function __invoke($id)
     {

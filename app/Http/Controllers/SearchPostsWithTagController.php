@@ -7,7 +7,7 @@ use App\Post;
 use App\Tag;
 use Auth;
 
-class SearchPostWithTagController extends Controller
+class SearchPostsWithTagController extends Controller
 {
     public function __invoke($id)
     {
