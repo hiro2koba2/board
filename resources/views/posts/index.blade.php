@@ -18,11 +18,14 @@
                 <div class="card m-3 border-brown bg-brown4 text-brown3">
                     <div class="card-header">
                         <h5><b>
-                            {{ $post->title }}&nbsp;
-
-                            <i class="fas fa-heart"></i>{{$post->likes_count}}&nbsp;
-                            <i class="fas fa-comments"></i>{{ $post->comments->count() }}
+                            {{ $post->title }}
                         </b></h5>
+                        <div class="text-left">
+                            <h5><b>
+                                <i class="fas fa-heart"></i>{{ $post->likes_count}}&nbsp;
+                                <i class="fas fa-comments"></i>{{ $post->comments->count() }}
+                            </b></h5>
+                        </div>
                     </div>
 
                     <div class="card-header">
