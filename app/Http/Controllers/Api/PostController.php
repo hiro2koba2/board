@@ -37,7 +37,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        return $post;
     }
 
     /**
@@ -49,7 +49,7 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        // $post->title =
     }
 
     /**
@@ -60,6 +60,6 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        // $post->delete();
+        $post->delete();
     }
 }
