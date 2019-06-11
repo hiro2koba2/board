@@ -19,13 +19,13 @@ use Illuminate\Http\Request;
 
 Route::group(['middleware' => 'api'], function () {
 
-    Route::apiResource('posts', 'Api\PostController');
-
     Route::post('authenticate', 'AuthenticateController@authenticate');
 
     // api認証通ったものだけ通れる
     Route::group(['middleware' => 'jwt.auth'], function () {
         Route::get('me', 'AuthenticateController@getCurrentUser');
+
+        Route::apiResource('posts', 'Api\PostController');
     });
 
 });
