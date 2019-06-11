@@ -64,8 +64,11 @@
             <p>{{$user->name}}の投稿はまだありません</p>
         @endif
     </div>
-    <div class="d-flex justify-content-center mb-5">
-        {{ $posts->links() }}
-    </div>
+
+    @if(!empty($posts->first()))
+        <div class="d-flex justify-content-center mb-5">
+            {{ $posts->links() }}
+        </div>
+    @endif
 </div>
 @endsection

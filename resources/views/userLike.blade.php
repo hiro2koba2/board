@@ -62,5 +62,11 @@
     @endif
     </div>
 
+    @if(!empty($likes->first()))
+        <div class="d-flex justify-content-center mb-5">
+            {{ $likes->links() }}
+        </div>
+    @endif
+
 </div>
 @endsection

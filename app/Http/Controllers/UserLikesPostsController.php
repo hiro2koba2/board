@@ -13,7 +13,7 @@ class UserLikesPostsController extends Controller
     {
         $user = User::find($id);
 
-        $likes = $user->likes()->get()->sortByDesc('created_at');
+        $likes = $user->likes()->get()->sortByDesc('created_at')->paginate();
 
         return view('userLike', ['likes' => $likes, 'user' => $user]);
     }
