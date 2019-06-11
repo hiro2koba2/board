@@ -59,9 +59,13 @@
                     </div>
                 </div>
             @endforeach
+
         @else
             <p>{{$user->name}}の投稿はまだありません</p>
         @endif
+    </div>
+    <div class="d-flex justify-content-center mb-5">
+        {{ $posts->links() }}
     </div>
 </div>
 @endsection

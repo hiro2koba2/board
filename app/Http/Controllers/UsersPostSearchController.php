@@ -12,7 +12,7 @@ class UsersPostSearchController extends Controller
     {
         // ユーザーの名前から検索する形でポストを取得
         $user = User::find($id);
-        $posts = $user->posts()->get()->sortByDesc('created_at');
+        $posts = $user->posts()->get()->sortByDesc('created_at')->paginate();
 
         return view('user', ['posts' => $posts, 'user' => $user ]);
     }

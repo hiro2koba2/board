@@ -3,7 +3,11 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+
+// 追加
 use Illuminate\Support\Collection;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class AppServiceProvider extends ServiceProvider
 {
