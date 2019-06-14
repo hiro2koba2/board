@@ -13,21 +13,31 @@
                     <img src="{{ $post->getFirstMedia('postImages')->getUrl('card') }}" alt="カフェの写真" class="img-fluid text-center mb-2">
                 <!-- </div> -->
                 <!-- いいね機能 -->
-                @if ($like)
-                {{ Form::model($post, array('action' => array('LikeController@unlike', $post->id, $like->id))) }}
-                {{ Form::hidden('_method','DELETE') }}
-                @csrf
-                    <button type="submit" class="btn btn-outline-danger">
-                        <i class="fas fa-heart"></i> {{ $post->likes_count }}
-                    </button>
-                {!! Form::close() !!}
+                @auth
+                    @if ($like)
+                    {{ Form::model($post, array('action' => array('LikeController@unlike', $post->id, $like->id))) }}
+                    {{ Form::hidden('_method','DELETE') }}
+                    @csrf
+                        <button type="submit" class="btn btn-outline-danger">
+                            <i class="fas fa-heart"></i> {{ $post->likes_count }}
+                        </button>
+                    {!! Form::close() !!}
+                    @else
+                    {{ Form::model($post, array('action' => array('LikeController@like', $post->id))) }}
+                        <button type="submit" class="btn btn-outline-danger">
+                            <i class="fas fa-heart"></i> {{ $post->likes_count }}
+                        </button>
+                    {!! Form::close() !!}
+                    @endif
                 @else
-                {{ Form::model($post, array('action' => array('LikeController@like', $post->id))) }}
-                    <button type="submit" class="btn btn-outline-danger">
-                        <i class="fas fa-heart"></i> {{ $post->likes_count }}
+                <p>
+                    <button class="btn btn-outline-danger mr-2">
+                        <i class="fas fa-heart"></i>{{ $post->likes_count }}
                     </button>
-                {!! Form::close() !!}
-                @endif
+                    ログイン時のみいいねできます
+                </p>
+
+                @endauth
 
 
                 <h5 class="my-2">
@@ -103,6 +113,7 @@
                         <small class="text-secondary">口コミはまだありません。</small>
                     @endforelse
                 </section>
+                @auth
                 <form method="POST" action="{{ route('comments.store') }}">
                     @csrf
 
@@ -136,6 +147,10 @@
                         </button>
                     </div>
                 </form>
+                @else
+                <h5>ログインすれば口コミを投稿できます</h5>
+                @endauth
+
             </div>
         </div>
     </div>
