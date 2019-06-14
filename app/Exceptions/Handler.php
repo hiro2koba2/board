@@ -49,12 +49,12 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        // // 画像の拡張子が違う時に投げる設定
-        if ($exception instanceof \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\FileUnacceptableForCollection) {
-            return redirect()->back()->with('error', 'Only PNG file type is accepted');
-        }
+        // 画像の拡張子が違う時に投げる設定
+        // if ($exception instanceof \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\FileUnacceptableForCollection) {
+        //     return redirect()->back()->with('error', 'Only PNG file type is accepted');
+        // }
 
-        return parent::render($request, $exception);
+        // return parent::render($request, $exception);
     }
 
     // ログインしてない場合にフラッシュメッセージをつけた
