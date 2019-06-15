@@ -19,7 +19,7 @@ use Spatie\MediaLibrary\File;
 // Conversionへの登録に必要
 use Spatie\MediaLibrary\Models\Media;
 
-// API認証のため
+// jwtでのAPI認証のため
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class User extends Authenticatable implements HasMedia, JWTSubject
@@ -53,6 +53,7 @@ class User extends Authenticatable implements HasMedia, JWTSubject
         'email_verified_at' => 'datetime',
     ];
 
+
     // JWT認証で追加
 
     /**
@@ -73,6 +74,8 @@ class User extends Authenticatable implements HasMedia, JWTSubject
     {
         return [];
     }
+
+
 
     /**
      * ユーザーに関連する投稿を取得
@@ -97,7 +100,7 @@ class User extends Authenticatable implements HasMedia, JWTSubject
     }
 
     /**
-     * mediaモデルへの登録
+     * mediaモデルへの登録（Laravel medialibrary）
      */
     public function registerMediaCollections()
     {

@@ -10,7 +10,7 @@ class Tag extends Model
     ];
 
     /**
-     * userに所属する役目を取得
+     * ポストとの多対多のリレーション
      */
     public function posts()
     {

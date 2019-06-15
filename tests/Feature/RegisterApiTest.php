@@ -15,7 +15,8 @@ class RegisterApiTest extends TestCase
      */
     public function testExample()
     {
-        $response = $this->get('/');
+        $response = $this->get('/api/authenticate');
+        // これだけだと認証でばつを確認
 
         $response->assertStatus(200);
     }

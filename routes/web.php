@@ -10,14 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::group(['middleware' => 'auth'], function() {
-
-    Route::post('posts/{id}/likes', 'LikeController@like');
-
-    Route::delete('posts/{id}/likes/{like_id}', 'LikeController@unlike');
-});
-
-
 
 Route::get('/', 'PostController@index')->name('index');
 
@@ -31,13 +23,24 @@ Route::get('tags/{id}', 'SearchPostsWithTagController')->name('TagSearch');
 // 特定ユーザーのポストだけを返すルート
 Route::get('users/{id}', 'SearchUsersPostsController')->name('UserSearch');
 
-// 特定のユーザーがいいねしたポストを返すルート
-Route::get('users/{id}/likes', 'UserLikesPostsController')->name('UserLikes');
-
 Route::resource('avatar', 'AvatarController', ['only' => ['index', 'store']]);
 
 Route::resource('posts', 'PostController');
 
-//コメント投稿はログイン　新規投稿も追加する　リダイレクトを決める
-Route::resource('comments', 'CommentController', ['only' => ['store']]);
+// ログインしてないとできないやつ　ルートの段階で処理する
+Route::group(['middleware' => 'auth'], function() {
+
+    //コメント投稿
+    Route::resource('comments', 'CommentController', ['only' => ['store']]);
+
+    // いいね
+    Route::post('posts/{id}/likes', 'LikeController@like');
+
+    // いいね解除
+    Route::delete('posts/{id}/likes/{like_id}', 'LikeController@unlike');
+
+    // 特定のユーザーがいいねしたポストを返すルート
+    Route::get('users/{id}/likes', 'UserLikesPostsController')->name('UserLikes');
+});
+
 

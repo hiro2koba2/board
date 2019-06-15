@@ -12,17 +12,15 @@
                 <img src="{{ $user->getFirstMedia('avatar')->getUrl('thumb')  }}" width="50" height="50" alt="" class="rounded-circle mr-1">の投稿
             @endif
 
-            <!-- 認証ずみ -->
-            @auth
-                <p class="mt-3"><b>ユーザー名・{{ $user->name }}</b></p>
-                <a href="{{ route('UserLikes', ['id' => $user->id ])}}">{{ $user->name }}のいいねした記事一覧</a>
-            @endauth
+            <!-- ミドルウェアでログインしてない場合はリダイレクトするようにした -->
+            <p class="mt-3"><b>ユーザー名・{{ $user->name }}</b></p>
+            <a href="{{ route('UserLikes', ['id' => $user->id ])}}">{{ $user->name }}のいいねした記事一覧</a>
 
             <!-- 認証してない場合 -->
-            @guest
+            <!-- @guest
                 <p class="mt-3"><b>ユーザー名・{{ $user->name }}</b></p>
                 <p class="mt-2">ログインで{{ $user->name }}がいいねした投稿を見れます。</p>
-            @endguest
+            @endguest -->
 
         </h5>
     </div>
