@@ -77,7 +77,7 @@
                     @forelse($post->comments as $comment)
                         <div class="border-top border-brown p-4">
                             <div class="row">
-                                <div class="col-sm-2">
+                                <div class="col-2">
                                     <a href="{{ route('UserSearch', ['id' => $comment->user->id ])}}">
                                         @if ($comment->user->getFirstMedia('avatar') === null )
                                         <img src="/storage/noimage.png" alt="noimage" width="50" height="50" alt="" class="rounded-circle">
@@ -88,8 +88,8 @@
                                     </a>
                                     <!-- <p class="text-center"><b>{{ $comment->user->name }}</b></p> -->
                                 </div>
-                                <div class="col-sm-10">
-                                    <p class="mt-1">
+                                <div class="col-10">
+                                    <p class="">
                                         {!! nl2br(e($comment->body)) !!}
                                     </p>
                                     <p>
