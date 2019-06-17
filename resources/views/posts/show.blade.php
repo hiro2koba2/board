@@ -89,10 +89,10 @@
                                     <!-- <p class="text-center"><b>{{ $comment->user->name }}</b></p> -->
                                 </div>
                                 <div class="col-10">
-                                    <p class="">
+                                    <p class="pl-3">
                                         {!! nl2br(e($comment->body)) !!}
                                     </p>
-                                    <p>
+                                    <p class="pl-3">
                                         {{ $comment->created_at->format('Y.m.d H:i') }}
                                     </p>
                                 </div>
