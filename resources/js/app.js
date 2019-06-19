@@ -6,6 +6,9 @@
 
 require('./bootstrap');
 
+// jsを読み込んでみる
+// require('./sample');
+
 window.Vue = require('vue');
 
 /**

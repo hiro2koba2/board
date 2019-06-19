@@ -21,7 +21,7 @@ Route::group(['middleware' => 'api'], function () {
 
     Route::post('authenticate', 'AuthenticateController@authenticate');
 
-    // api認証通ったものだけ通れる 認証方法はjwtを今回は使う
+    // api認証通ったものだけ通れる 認証方法はjwtを使う
     Route::group(['middleware' => 'jwt.auth'], function () {
         Route::get('me', 'AuthenticateController@getCurrentUser');
 

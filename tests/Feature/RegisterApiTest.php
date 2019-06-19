@@ -2,12 +2,17 @@
 
 namespace Tests\Feature;
 
+use App\User;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
+use Tymon\JWTAuth\Facades\JWTAuth;
+
 class RegisterApiTest extends TestCase
 {
+    use RefreshDatabase;
+
     /**
      * A basic feature test example.
      *
@@ -15,9 +20,13 @@ class RegisterApiTest extends TestCase
      */
     public function testExample()
     {
-        $response = $this->get('/api/authenticate');
-        // これだけだと認証でばつを確認
+        $user = factory(User::class)->create();
 
-        $response->assertStatus(200);
+        // jwtauthのモック
+        $headers = ['Authorization' => 'Bearer' . JWTAuth::fromUser($user), 'Accept' => 'application/json'];
+
+        // $response = $this->json('GET', '/api/me', $headers);
+
+        // $response->assertStatus(200);
     }
 }

@@ -87,6 +87,13 @@ return [
             'prefix_indexes' => true,
         ],
 
+        // テスト用DBの設定
+        'sqlite_testing' => [
+            'driver' => 'sqlite',
+            'database' => ':memory:',
+            'prefix' => '',
+        ],
+
     ],
 
     /*
