@@ -61,7 +61,7 @@
                         @csrf
                         @method('DELETE')
 
-                        <button class="btn btn-danger mr-3">削除する</button>
+                        <button class="btn btn-danger mr-3" onclick="return confirm('本当に削除しますか?')">削除する</button>
                     </form>
 
                     <a href="{{ route('posts.edit', ['post' => $post]) }}">

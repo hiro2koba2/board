@@ -9,6 +9,7 @@ require('./bootstrap');
 // jsを読み込んでみる
 // require('./sample');
 
+// developertollからvueが検出されてしまうので一応コメントアウト
 // window.Vue = require('vue');
 
 /**
