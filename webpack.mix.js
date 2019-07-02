@@ -11,7 +11,7 @@ const mix = require('laravel-mix');
  |
  */
 
-// キャッシュの対策だけ追加した
-mix.js('resources/js/app.js', 'public/js')
+// キャッシュの対策だけ追加した jqueryを全体として読み込むべきか
+mix.js(['resources/js/app.js', 'resources/js/samplejQuery.js'], 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
     .version()

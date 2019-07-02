@@ -14,19 +14,19 @@
                 <!-- </div> -->
                 <!-- いいね機能 -->
                 @if ($like)
-                {{ Form::model($post, array('action' => array('LikeController@unlike', $post->id, $like->id))) }}
-                {{ Form::hidden('_method','DELETE') }}
-                @csrf
-                    <button type="submit" class="btn btn-outline-danger">
-                        <i class="fas fa-heart"></i> {{ $post->likes_count }}
-                    </button>
-                {!! Form::close() !!}
+                    {{ Form::model($post, array('action' => array('LikeController@unlike', $post->id, $like->id))) }}
+                    {{ Form::hidden('_method','DELETE') }}
+                    @csrf
+                        <button id="unlike" type="submit" class="btn btn-outline-danger">
+                            <i class="fas fa-heart"></i> {{ $post->likes_count }}
+                        </button>
+                    {!! Form::close() !!}
                 @else
-                {{ Form::model($post, array('action' => array('LikeController@like', $post->id))) }}
-                    <button type="submit" class="btn btn-outline-danger">
-                        <i class="fas fa-heart"></i> {{ $post->likes_count }}
-                    </button>
-                {!! Form::close() !!}
+                    {{ Form::model($post, array('action' => array('LikeController@like', $post->id))) }}
+                        <button id="like" type="submit" class="btn btn-outline-danger">
+                            <i class="fas fa-heart"></i> {{ $post->likes_count }}
+                        </button>
+                    {!! Form::close() !!}
                 @endif
 
                 <h5 class="my-2">
@@ -52,12 +52,7 @@
 
                 @can('update', $post)
                 <!-- ポリシーでチェックしてOKなら表示　所有者なら -->
-                    <form
-                            style="display: inline-block;"
-                            method="POST"
-                            action="{{ route('posts.destroy', ['post' => $post]) }}"
-                            class="mb-5"
-                        >
+                    <form style="display: inline-block;" method="POST" action="{{ route('posts.destroy', ['post' => $post]) }}" class="mb-5">
                         @csrf
                         @method('DELETE')
 
@@ -106,23 +101,16 @@
                 <form method="POST" action="{{ route('comments.store') }}">
                     @csrf
 
-                    <input
-                        name="post_id"
-                        type="hidden"
-                        value="{{ $post->id }}"
-                    >
+                    <input name="post_id" type="hidden" value="{{ $post->id }}">
 
                     <div class="form-group">
                         <label for="body">
                             口コミ投稿フォーム
                         </label>
 
-                        <textarea
-                            id="body"
-                            name="body"
-                            class="form-control {{ $errors->has('body') ? 'is-invalid' : '' }}"
-                            rows="4"
-                        >{{ old('body') }}</textarea>
+                        <textarea id="body" name="body" class="form-control {{ $errors->has('body') ? 'is-invalid' : '' }}" rows="4">
+                            {{ old('body') }}
+                        </textarea>
                         @if ($errors->has('body'))
                             <div class="invalid-feedback">
                                 {{ $errors->first('body') }}

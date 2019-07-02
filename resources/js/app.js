@@ -6,10 +6,10 @@
 
 require('./bootstrap');
 
-// jsを読み込んでみる
+// jsを読み込んでみる　ここで読み込むと全てのページで実行される
 // require('./sample');
 
-// developertollからvueが検出されてしまうので一応コメントアウト
+// developertoolからvueが検出されてしまうので一応コメントアウト
 // window.Vue = require('vue');
 
 /**

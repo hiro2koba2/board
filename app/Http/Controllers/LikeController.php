@@ -28,7 +28,7 @@ class LikeController extends Controller
     // いいねを解除
     public function unlike($postId, $likeId)
     {
-        // 二つid受け取るので区別しやすく
+        // 二つid受け取るので区別しやすく　どのポストのどのいいねなのかを判別している
         $post = Post::findOrFail($postId);
         $post->like_by()->findOrFail($likeId)->delete();
 
