@@ -12,10 +12,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(UsersTableSeeder::class);
+        // $this->call(UsersTableSeeder::class);
 
         // タグの生成　追加する機能は作らないのでこのまま実行　別のファイルには分けてない
-        // $tags = ['フリーWi-Fi', 'キャリアWi-Fi', '電源', 'Suica', 'クレジット'];
-        // foreach ($tags as $tag) Tag::create(['name' => $tag]);
+        $tags = ['フリーWi-Fi', 'キャリアWi-Fi', '電源', 'Suica', 'クレジット'];
+        foreach ($tags as $tag) Tag::create(['name' => $tag]);
     }
 }

@@ -131,13 +131,9 @@ class PostController extends Controller
         $post = Post::findOrFail($id);
 
         $this->authorize('update', $post);
-        // 認可　ポリシーの処理
+        // 認可　ポリシーの処理　ロジック同じなのでupdate使い回わし
 
-        \DB::transaction(function () use ($post) {
-            $post->comments()->delete();
-            $post->delete();
-        });
-        // これなんだっけ、忘れた cascadeでいけないのかな
+        $post->delete();
 
         return redirect()->route('index')->with('status', '投稿を削除しました');
     }

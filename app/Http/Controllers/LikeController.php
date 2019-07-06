@@ -30,7 +30,7 @@ class LikeController extends Controller
         $post = Post::findOrFail($postId);
 
         // like_by()でログインしているユーザーのidからどのいいねかを見つける
-        // この実装だとlikeは付け替えるのではなく都度削除している 多対多でやるのと比べてどちらが重いのか？
+        // この実装だとlikeは付け替えるのではなく都度削除している 多対多でやるのと比べてどちらが良いのか？
         $post->like_by()->findOrFail($likeId)->delete();
 
         return redirect()
