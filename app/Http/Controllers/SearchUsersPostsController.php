@@ -10,8 +10,9 @@ class SearchUsersPostsController extends Controller
 {
     public function __invoke($id)
     {
-        // ユーザーの名前から検索する形でポストを取得
+        // ユーザーのidから検索する形でポストを取得
         $user = User::find($id);
+
         $posts = $user->posts()->get()->sortByDesc('created_at')->paginate();
 
         return view('user', ['posts' => $posts, 'user' => $user ]);

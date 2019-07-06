@@ -25,8 +25,7 @@ class AvatarController extends Controller
      */
     public function create()
     {
-        // auth()->user()->clearMediaCollection('avatar');
-        // これでdefaultのメディアグループが消える
+        //
     }
 
     /**

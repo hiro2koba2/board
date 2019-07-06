@@ -8,11 +8,6 @@ use Auth;
 
 class CommentController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -41,13 +36,14 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
+        // コメントのバリデーションはとりあえずこのままで
         $params = $request->validate([
             'post_id' => 'required|exists:posts,id',
             'body' => 'required|max:2000',
         ]);
 
+        // ログインしているユーザーのidを利用してuser_idに設定する
         $id = Auth::id();
-
         $params += array('user_id' => $id);
 
         $post = Post::findOrFail($params['post_id']);

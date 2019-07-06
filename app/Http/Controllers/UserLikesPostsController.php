@@ -13,6 +13,8 @@ class UserLikesPostsController extends Controller
     {
         $user = User::find($id);
 
+        // ユーザーのいいねを取得してそれを降順ソートからペジネーション
+        // いいねを渡してそこからview側でpostを呼び出す
         $likes = $user->likes()->get()->sortByDesc('created_at')->paginate();
 
         return view('userLike', ['likes' => $likes, 'user' => $user]);
