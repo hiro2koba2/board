@@ -49,7 +49,7 @@ class PostController extends Controller
         ]);
 
         $post->tags()->sync($request->tags);
-        // syncで付け替えることができる　attachだとだめ
+        // syncで付け替えることができる
 
         $post->addMedia($request->cafeimage)->toMediaCollection('postImages');
         // メディアライブラリに追加
